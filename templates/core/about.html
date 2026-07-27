@@ -7,23 +7,25 @@
 <div class="container py-5">
 
     {# Profile Header #}
-    <div class="text-center mb-5 reveal">
-        <div class="avatar-ring mx-auto mb-4" style="width: 100px; height: 100px;">
-            <img src="{% static 'images/Avatar_Python_Dev_512.png' %}" alt="AMW Avatar">
+    <div class="row align-items-center g-4 g-lg-5 mb-5 reveal">
+        <div class="col-md-4 col-lg-3 text-center text-md-end">
+            <div class="avatar-ring" style="width: 180px; height: 180px;">
+                <img src="{% static 'images/Avatar_Python_Dev_512.png' %}" alt="AMW Avatar">
+            </div>
         </div>
-        <h1 class="mb-1">About <span class="gradient-text">Me</span></h1>
-        <p class="text-secondary lead mb-4">DevOps Engineer &middot; Python Developer</p>
-
-        {# Social links as styled tags #}
-        <div class="d-flex justify-content-center gap-3">
-            <a href="https://github.com/amw" class="social-link-tag" target="_blank" rel="noopener">
-                <i class="bi bi-github"></i>
-                <span>github.com/amw</span>
-            </a>
-            <a href="https://linkedin.com/in/amw" class="social-link-tag" target="_blank" rel="noopener">
-                <i class="bi bi-linkedin"></i>
-                <span>linkedin.com/in/amw</span>
-            </a>
+        <div class="col-md-8 col-lg-9 text-center text-md-start">
+            <h1 class="mb-2">About <span class="gradient-text">Me</span></h1>
+            <p class="text-secondary lead mb-3">DevOps Engineer &middot; Python Developer</p>
+            <div class="d-flex gap-3 justify-content-center justify-content-md-start">
+                <a href="https://github.com/amw" class="social-link-tag" target="_blank" rel="noopener">
+                    <i class="bi bi-github"></i>
+                    <span>github.com/amw</span>
+                </a>
+                <a href="https://linkedin.com/in/amw" class="social-link-tag" target="_blank" rel="noopener">
+                    <i class="bi bi-linkedin"></i>
+                    <span>linkedin.com/in/amw</span>
+                </a>
+            </div>
         </div>
     </div>
 
