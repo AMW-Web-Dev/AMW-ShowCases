@@ -704,6 +704,40 @@ textarea.form-control {
   resize: vertical;
 }
 
+/* ─── Contact Info Cards ─── */
+.contact-info-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.contact-info-card:hover {
+  transform: translateX(4px);
+  border-color: var(--accent-indigo);
+  box-shadow: 0 4px 20px rgba(129, 140, 248, 0.1);
+}
+
+.contact-info-card .card-body {
+  padding: 1rem 1.25rem;
+}
+
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  background: rgba(129, 140, 248, 0.1);
+  color: var(--accent-indigo);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.contact-info-card:hover .contact-icon {
+  background: rgba(129, 140, 248, 0.2);
+  transform: scale(1.05);
+}
+
 /* ─── Footer ─── */
 .footer {
   background: var(--bg-surface) !important;
