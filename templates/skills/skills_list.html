@@ -1,76 +1,43 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Skills - AMW Portfolio{% endblock %}
-
-{% block extra_css %}
-<link href="{% static 'css/skills.css' %}" rel="stylesheet">
-{% endblock %}
+{% block title %}Skills — AMW Portfolio{% endblock %}
 
 {% block content %}
-<div class="container py-4">
-    <h1 class="mb-4">Skills &amp; Expertise</h1>
+<div class="container py-5">
+    <div class="section-title">
+        <h1>Skills &amp; <span class="gradient-text">Expertise</span></h1>
+        <p>Technologies and tools I use to build and ship</p>
+    </div>
 
-    {% if featured_skills %}
-    <div class="mb-5">
-        <h2 class="h3 mb-3">Featured Skills</h2>
-        <div class="row">
-            {% for skill in featured_skills %}
-            <div class="col-md-4 mb-3">
-                <div class="card text-center skill-card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ skill.name }}</h5>
-                        <div class="progress mb-2" style="height: 20px;">
-                            <div class="progress-bar bg-primary" role="progressbar"
-                                 style="width: {{ skill.proficiency }}%"
-                                 aria-valuenow="{{ skill.proficiency }}"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100">
-                                {{ skill.proficiency }}%
-                            </div>
-                        </div>
-                        <small class="text-muted">{{ skill.years_experience }} years experience</small>
-                    </div>
-                </div>
-            </div>
+    {% for category in categories %}
+    <div class="skills-category reveal">
+        <div class="skills-category-title">
+            <span class="icon">
+                {% if category.icon == "code-slash" %}<i class="bi bi-code-slash"></i>
+                {% elif category.icon == "layers" %}<i class="bi bi-layers"></i>
+                {% elif category.icon == "cloud" %}<i class="bi bi-cloud"></i>
+                {% elif category.icon == "gear" %}<i class="bi bi-gear"></i>
+                {% else %}<i class="bi bi-star"></i>
+                {% endif %}
+            </span>
+            {{ category.name }}
+        </div>
+        {% if category.description %}
+        <p class="text-secondary mb-3">{{ category.description }}</p>
+        {% endif %}
+        <div>
+            {% for skill in category.skills.all %}
+            <span class="skill-tag {% if skill.featured %}featured{% endif %}">
+                {{ skill.name }}
+                <span class="exp">{{ skill.years_experience }}y</span>
+            </span>
             {% endfor %}
         </div>
     </div>
-    {% endif %}
-
-    {% for category in categories %}
-    <div class="mb-5">
-        <h2 class="h3 mb-3">{{ category.name }}</h2>
-        {% if category.description %}
-        <p class="text-muted">{{ category.description }}</p>
-        {% endif %}
-
-        <div class="row">
-            {% for skill in category.skills.all %}
-            <div class="col-md-6 mb-3">
-                <div class="card skill-card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h5 class="card-title mb-0">{{ skill.name }}</h5>
-                            <span class="badge bg-primary">{{ skill.proficiency }}%</span>
-                        </div>
-                        <div class="progress mb-2" style="height: 10px;">
-                            <div class="progress-bar bg-primary" role="progressbar"
-                                 style="width: {{ skill.proficiency }}%"
-                                 aria-valuenow="{{ skill.proficiency }}"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100">
-                            </div>
-                        </div>
-                        <small class="text-muted">{{ skill.years_experience }} years experience</small>
-                        {% if skill.description %}
-                        <p class="mt-2 mb-0 small">{{ skill.description }}</p>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+    {% empty %}
+    <div class="text-center py-5">
+        <p class="text-secondary">No skills listed yet.</p>
     </div>
     {% endfor %}
 </div>

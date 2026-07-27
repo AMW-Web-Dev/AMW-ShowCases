@@ -1,56 +1,94 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}About - AMW Portfolio{% endblock %}
+{% block title %}About — AMW Portfolio{% endblock %}
 
 {% block content %}
 <div class="container py-5">
-    <div class="row">
+    <div class="row g-5">
         <div class="col-lg-8">
-            <h1 class="mb-4">About Me</h1>
+            <div class="reveal">
+                <h1 class="mb-4">About <span class="gradient-text">Me</span></h1>
 
-            <div class="mb-4">
-                <h2>Professional Summary</h2>
-                <p>
-                    DevOps Engineer and Python Developer with extensive experience in
-                    building and maintaining scalable infrastructure. Specializing in
-                    automation, containerization, and cloud-native solutions.
-                </p>
-            </div>
+                <div class="mb-4">
+                    <h2 class="h4">Professional Summary</h2>
+                    <p class="text-secondary">
+                        DevOps Engineer and Python Developer with extensive experience in
+                        building and maintaining scalable infrastructure. Specializing in
+                        automation, containerization, and cloud-native solutions.
+                    </p>
+                </div>
 
-            <div class="mb-4">
-                <h2>Specializations</h2>
-                <ul class="list-unstyled">
-                    <li class="mb-2"><strong>DevOps:</strong> Docker, Kubernetes, CI/CD, Cloud Infrastructure</li>
-                    <li class="mb-2"><strong>Backend:</strong> Python, Django, PostgreSQL, REST APIs</li>
-                    <li class="mb-2"><strong>Linux:</strong> System Administration, Shell Scripting, Automation</li>
-                    <li class="mb-2"><strong>Data:</strong> Analytics, ETL Pipelines, Data Processing</li>
-                </ul>
-            </div>
+                <div class="mb-4">
+                    <h2 class="h4">Specializations</h2>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="h6 card-title"><i class="bi bi-cloud me-2 text-primary"></i>DevOps</h5>
+                                    <p class="small text-secondary mb-0">Docker, Kubernetes, CI/CD, Cloud Infrastructure</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="h6 card-title"><i class="bi bi-code-slash me-2 text-primary"></i>Backend</h5>
+                                    <p class="small text-secondary mb-0">Python, Django, PostgreSQL, REST APIs</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="h6 card-title"><i class="bi bi-terminal me-2 text-primary"></i>Linux</h5>
+                                    <p class="small text-secondary mb-0">System Administration, Shell Scripting, Automation</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="h6 card-title"><i class="bi bi-bar-chart me-2 text-primary"></i>Data</h5>
+                                    <p class="small text-secondary mb-0">Analytics, ETL Pipelines, Data Processing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="mb-4">
-                <h2>Current Focus</h2>
-                <ul>
-                    <li>Building scalable web applications with Django and HTMX</li>
-                    <li>Automating development workflows and infrastructure</li>
-                    <li>Contributing to open source projects</li>
-                    <li>Exploring cloud-native architectures</li>
-                </ul>
+                <div class="mb-4">
+                    <h2 class="h4">Current Focus</h2>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-arrow-right-circle me-2 text-primary"></i>Building scalable web applications with Django and HTMX</li>
+                        <li class="mb-2"><i class="bi bi-arrow-right-circle me-2 text-primary"></i>Automating development workflows and infrastructure</li>
+                        <li class="mb-2"><i class="bi bi-arrow-right-circle me-2 text-primary"></i>Contributing to open source projects</li>
+                        <li class="mb-2"><i class="bi bi-arrow-right-circle me-2 text-primary"></i>Exploring cloud-native architectures</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <div class="col-lg-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Contact Information</h5>
-                    <ul class="list-unstyled">
+            <div class="card reveal" style="position: sticky; top: 100px;">
+                <div class="card-body text-center">
+                    <div class="avatar-ring mx-auto mb-3" style="width: 120px; height: 120px;">
+                        <div class="avatar-ring-inner" style="font-size: 2rem;">AMW</div>
+                    </div>
+                    <h5 class="card-title">AMW</h5>
+                    <p class="text-secondary small mb-3">DevOps Engineer · Python Developer</p>
+                    <hr class="border-color-inherit" style="border-color: var(--border-color);">
+                    <ul class="list-unstyled text-start small">
                         <li class="mb-2">
-                            <i class="bi bi-envelope"></i> amw@example.com
+                            <i class="bi bi-envelope me-2 text-primary"></i>amw@example.com
                         </li>
                         <li class="mb-2">
-                            <i class="bi bi-github"></i> <a href="https://github.com/amw" class="text-decoration-none">github.com/amw</a>
+                            <i class="bi bi-github me-2 text-primary"></i>
+                            <a href="https://github.com/amw" target="_blank" rel="noopener">github.com/amw</a>
                         </li>
                         <li class="mb-2">
-                            <i class="bi bi-linkedin"></i> <a href="https://linkedin.com/in/amw" class="text-decoration-none">linkedin.com/in/amw</a>
+                            <i class="bi bi-linkedin me-2 text-primary"></i>
+                            <a href="https://linkedin.com/in/amw" target="_blank" rel="noopener">linkedin.com/in/amw</a>
                         </li>
                     </ul>
                 </div>

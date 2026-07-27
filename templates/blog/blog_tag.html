@@ -1,31 +1,34 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Posts tagged "{{ tag }}" - AMW Portfolio{% endblock %}
+{% block title %}Posts tagged "{{ tag }}" — AMW Portfolio{% endblock %}
 
 {% block content %}
-<div class="container py-4">
-    <h1 class="mb-4">Posts tagged: <span class="badge bg-primary">{{ tag }}</span></h1>
+<div class="container py-5">
+    <div class="section-title reveal">
+        <h1>Posts tagged: <span class="blog-tag" style="font-size: 1rem;">{{ tag }}</span></h1>
+    </div>
 
-    <div class="row">
+    <div class="row g-4">
         {% for post in posts %}
-        <div class="col-md-6 mb-4">
-            <div class="card h-100">
+        <div class="col-md-6">
+            <div class="card blog-card h-100 reveal">
                 {% if post.image %}
                 <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title">{{ post.title }}</h5>
-                    <p class="card-text">{{ post.excerpt|default:post.content|truncatewords:30 }}</p>
+                    <h3 class="h5 card-title">{{ post.title }}</h3>
+                    <p class="card-text text-secondary">{{ post.excerpt|default:post.content|truncatewords:30 }}</p>
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">{{ post.published_at|date:"F j, Y" }}</small>
-                    <a href="{% url 'blog:detail' post.slug %}" class="btn btn-primary btn-sm float-end">Read More</a>
+                    <span class="blog-meta">{{ post.published_at|date:"M j, Y" }}</span>
+                    <a href="{% url 'blog:detail' post.slug %}" class="btn btn-outline btn-sm">Read</a>
                 </div>
             </div>
         </div>
         {% empty %}
-        <div class="col-12">
-            <p>No posts found with this tag.</p>
+        <div class="col-12 text-center py-5">
+            <p class="text-secondary">No posts found with this tag.</p>
         </div>
         {% endfor %}
     </div>

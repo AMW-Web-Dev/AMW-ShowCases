@@ -1,19 +1,30 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Delete Post - AMW Portfolio{% endblock %}
+{% block title %}Delete Post — AMW Portfolio{% endblock %}
 
 {% block content %}
-<div class="container py-4">
-    <h1 class="mb-4">Delete Post</h1>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 text-center">
+            <div class="card p-4">
+                <div class="card-body">
+                    <i class="bi bi-exclamation-triangle" style="font-size: 3rem; color: var(--accent-rose);"></i>
+                    <h1 class="h4 mt-3">Delete Post</h1>
+                    <p class="text-secondary">Are you sure you want to delete <strong>"{{ object.title }}"</strong>? This action cannot be undone.</p>
 
-    <p>Are you sure you want to delete "{{ object.title }}"?</p>
-
-    <form method="post">
-        {% csrf_token %}
-        <div class="d-flex gap-2">
-            <button type="submit" class="btn btn-danger">Confirm Delete</button>
-            <a href="{% url 'blog:detail' object.slug %}" class="btn btn-outline-secondary">Cancel</a>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex gap-2 justify-content-center mt-4">
+                            <button type="submit" class="btn btn-outline" style="border-color: rgba(244, 114, 182, 0.3); color: var(--accent-rose);">
+                                <i class="bi bi-trash me-1"></i>Confirm Delete
+                            </button>
+                            <a href="{% url 'blog:detail' object.slug %}" class="btn btn-outline">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </form>
+    </div>
 </div>
 {% endblock %}
