@@ -29,7 +29,9 @@
         <div>
             {% for skill in category.skills.all %}
             <span class="skill-tag {% if skill.featured %}featured{% endif %}">
-                {% if skill.icon %}<i class="{{ skill.icon }}"></i>{% endif %}
+                {% if skill.icon %}<i class="{{ skill.icon }}"></i>
+                {% elif skill.slug == "htmx" %}<span class="skill-icon-htmx">HTMX</span>
+                {% endif %}
                 {{ skill.name }}
             </span>
             {% endfor %}

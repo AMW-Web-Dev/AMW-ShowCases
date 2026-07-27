@@ -489,40 +489,102 @@ section {
   color: var(--text-primary);
   font-size: 0.9rem;
   font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: default;
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+/* Subtle bottom accent line — grows from center on hover */
+.skill-tag::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--accent-indigo);
+  transition: width 0.3s ease, left 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+/* Background fill layer */
+.skill-tag::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(129, 140, 248, 0.06), transparent 60%);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
 }
 
 .skill-tag i {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   line-height: 1;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              filter 0.3s ease;
-  filter: saturate(0.6);
+  transition: transform 0.25s ease, filter 0.25s ease;
+  filter: saturate(0.5);
 }
 
 .skill-tag:hover {
+  transform: translateY(-2px);
   border-color: var(--accent-indigo);
-  transform: translateY(-3px) scale(1.04);
-  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.15), var(--glow-card);
+  box-shadow: 0 4px 20px rgba(129, 140, 248, 0.12);
   background: var(--bg-elevated);
 }
 
+.skill-tag:hover::after {
+  width: 60%;
+  left: 20%;
+  opacity: 1;
+}
+
+.skill-tag:hover::before {
+  opacity: 1;
+}
+
 .skill-tag:hover i {
-  transform: scale(1.2) rotate(-8deg);
+  transform: scale(1.15);
   filter: saturate(1);
 }
 
+/* Featured tags — subtle indigo tint */
 .skill-tag.featured {
-  border-color: rgba(129, 140, 248, 0.3);
-  background: rgba(129, 140, 248, 0.08);
+  border-color: rgba(129, 140, 248, 0.25);
+  background: rgba(129, 140, 248, 0.06);
 }
 
 .skill-tag.featured:hover {
   border-color: var(--accent-indigo);
-  background: rgba(129, 140, 248, 0.15);
-  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2), 0 0 20px rgba(129, 140, 248, 0.1), var(--glow-card);
+  background: rgba(129, 140, 248, 0.12);
+  box-shadow: 0 4px 20px rgba(129, 140, 248, 0.12), 0 0 30px rgba(129, 140, 248, 0.06);
+}
+
+/* HTMX custom icon badge */
+.skill-icon-htmx {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 4px;
+  background: rgba(54, 162, 235, 0.15);
+  color: var(--accent-cyan);
+  line-height: 1;
+  transition: transform 0.25s ease, background 0.25s ease;
+  flex-shrink: 0;
+}
+
+.skill-tag:hover .skill-icon-htmx {
+  transform: scale(1.15);
+  background: rgba(54, 162, 235, 0.25);
 }
 
 /* Skill tag staggered entrance animation */
