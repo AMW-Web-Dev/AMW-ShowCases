@@ -6,34 +6,30 @@
 {% block content %}
 <div class="container py-5">
 
-    {# Profile Header #}
-    <div class="row align-items-center g-4 g-lg-5 mb-5 reveal">
-        <div class="col-md-4 col-lg-3 text-center text-md-end">
-            <div class="avatar-ring" style="width: 180px; height: 180px;">
-                <img src="{% static 'images/Avatar_Python_Dev_512.png' %}" alt="AMW Avatar">
-            </div>
+    {# Profile Header — centered #}
+    <div class="text-center mb-5 reveal">
+        <div class="avatar-ring mx-auto mb-4" style="width: min(360px, 100%); aspect-ratio: 1;">
+            <img src="{% static 'images/Avatar_Python_Dev_512.png' %}" alt="AMW Avatar">
         </div>
-        <div class="col-md-8 col-lg-9 text-center text-md-start">
-            <h1 class="mb-2">About <span class="gradient-text">Me</span></h1>
-            <p class="text-secondary lead mb-3">DevOps Engineer &middot; Python Developer</p>
-            <div class="d-flex gap-3 justify-content-center justify-content-md-start">
-                <a href="https://github.com/amw" class="social-link-tag" target="_blank" rel="noopener">
-                    <i class="bi bi-github"></i>
-                    <span>github.com/amw</span>
-                </a>
-                <a href="https://linkedin.com/in/amw" class="social-link-tag" target="_blank" rel="noopener">
-                    <i class="bi bi-linkedin"></i>
-                    <span>linkedin.com/in/amw</span>
-                </a>
-            </div>
+        <h1 class="mb-2">About <span class="gradient-text">Me</span></h1>
+        <p class="text-secondary lead mb-4">DevOps Engineer &middot; Python Developer</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://github.com/amw" class="social-link-tag" target="_blank" rel="noopener">
+                <i class="bi bi-github"></i>
+                <span>github.com/amw</span>
+            </a>
+            <a href="https://linkedin.com/in/amw" class="social-link-tag" target="_blank" rel="noopener">
+                <i class="bi bi-linkedin"></i>
+                <span>linkedin.com/in/amw</span>
+            </a>
         </div>
     </div>
 
-    {# Main Content — two columns to fill the page better #}
-    <div class="row g-4">
+    {# Main Content — centered #}
+    <div class="row justify-content-center g-4">
 
         {# Left Column #}
-        <div class="col-lg-6 d-flex flex-column gap-4">
+        <div class="col-lg-5 d-flex flex-column gap-4">
 
             {# Professional Summary #}
             <div class="card p-4 reveal">
@@ -72,11 +68,11 @@
         </div>
 
         {# Right Column #}
-        <div class="col-lg-6">
+        <div class="col-lg-5">
 
             {# Specializations #}
             <div class="reveal">
-                <h2 class="h5 mb-3">
+                <h2 class="h5 mb-3 text-center text-lg-start">
                     <span class="gradient-text">Specializations</span>
                 </h2>
                 <div class="row g-3">
