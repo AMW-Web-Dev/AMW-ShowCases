@@ -710,9 +710,9 @@ textarea.form-control {
 }
 
 .contact-info-card:hover {
-  transform: translateX(4px);
+  transform: translateY(-4px);
   border-color: var(--accent-indigo);
-  box-shadow: 0 4px 20px rgba(129, 140, 248, 0.1);
+  box-shadow: 0 8px 25px rgba(129, 140, 248, 0.12);
 }
 
 .contact-info-card .card-body {
