@@ -551,6 +551,18 @@ section {
   filter: saturate(1);
 }
 
+/* HTMX inline SVG icon */
+.skill-icon-htmx-svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.skill-tag:hover .skill-icon-htmx-svg {
+  transform: scale(1.15);
+}
+
 /* Featured tags — subtle indigo tint */
 .skill-tag.featured {
   border-color: rgba(129, 140, 248, 0.25);
