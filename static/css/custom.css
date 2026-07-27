@@ -683,6 +683,72 @@ section {
   opacity: 0.6;
 }
 
+/* ─── About Page ─── */
+.about-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(129, 140, 248, 0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(34, 211, 238, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.about-avatar-ring {
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  padding: 4px;
+  box-shadow: var(--glow-indigo);
+  animation: float 6s ease-in-out infinite;
+  margin: 0 auto;
+}
+
+.about-avatar-ring img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  background: rgba(129, 140, 248, 0.1);
+  color: var(--accent-indigo);
+  letter-spacing: 0.08em;
+}
+
+.about-section-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  background: rgba(129, 140, 248, 0.1);
+  color: var(--accent-indigo);
+}
+
+/* Responsive avatar */
+@media (max-width: 575.98px) {
+  .about-avatar-ring {
+    width: min(260px, 80vw);
+    height: min(260px, 80vw);
+  }
+}
+
 /* ─── Project Cards ─── */
 .project-card .card-footer {
   display: flex;

@@ -4,22 +4,25 @@
 {% block title %}About — AMW Portfolio{% endblock %}
 
 {% block content %}
-<div class="container py-5">
 
-    {# Profile Header — image left, text right, centered as one block #}
-    <div class="row justify-content-center mb-5 reveal">
-        <div class="col-xl-9 col-xxl-8">
-            <div class="row g-5 align-items-stretch justify-content-center">
-                <div class="col-sm-8 col-md-5 col-lg-4">
-                    <div class="avatar-ring mx-auto" style="width: min(360px, 100%); height: auto; aspect-ratio: 1;">
-                        <img src="{% static 'images/Avatar_Python_Dev_512.png' %}" alt="AMW Avatar">
+{# ─── Profile Banner ─── #}
+<div class="about-banner">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="row align-items-center g-5">
+                    <div class="col-md-5 text-center">
+                        <div class="about-avatar-wrap">
+                            <div class="about-avatar-ring">
+                                <img src="{% static 'images/Avatar_Python_Dev_512.png' %}" alt="AMW Avatar">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-10 col-md-7 col-lg-6 d-flex ps-lg-4">
-                    <div class="d-flex flex-column justify-content-center py-md-3 text-center text-md-start">
-                        <h1 class="mb-2">About <span class="gradient-text">Me</span></h1>
-                        <p class="text-secondary lead mb-3">DevOps Engineer &middot; Python Developer</p>
-                        <div class="d-flex gap-3 justify-content-center justify-content-md-start">
+                    <div class="col-md-7">
+                        <p class="about-badge text-uppercase small fw-bold mb-2">Who I Am</p>
+                        <h1 class="display-4 fw-bold mb-3">About <span class="gradient-text">Me</span></h1>
+                        <p class="lead text-secondary mb-4">DevOps Engineer &middot; Python Developer</p>
+                        <div class="d-flex gap-3">
                             <a href="https://github.com/amw" class="social-link-tag" target="_blank" rel="noopener">
                                 <i class="bi bi-github"></i>
                                 <span>github.com/amw</span>
@@ -34,16 +37,21 @@
             </div>
         </div>
     </div>
+</div>
 
-    {# Main Content — centered #}
-    <div class="row justify-content-center g-4">
+{# ─── Content ─── #}
+<div class="container py-5">
 
-        {# Left Column #}
-        <div class="col-lg-5 d-flex flex-column gap-4">
-
-            {# Professional Summary #}
-            <div class="card p-4 reveal">
-                <h2 class="h5 mb-3"><i class="bi bi-person-badge me-2 text-primary"></i>Professional Summary</h2>
+    {# Summary + Current Focus side by side #}
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <div class="card p-4 h-100 reveal">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="about-section-icon">
+                        <i class="bi bi-person-badge"></i>
+                    </span>
+                    <h2 class="h5 mb-0">Professional Summary</h2>
+                </div>
                 <p class="text-secondary mb-0">
                     DevOps Engineer and Python Developer with extensive experience in
                     building and maintaining scalable infrastructure. Specializing in
@@ -51,88 +59,82 @@
                     Passionate about clean code, efficient systems, and open source.
                 </p>
             </div>
-
-            {# Current Focus #}
-            <div class="card p-4 reveal">
-                <h2 class="h5 mb-3"><i class="bi bi-rocket-takeoff me-2 text-primary"></i>Current Focus</h2>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-4 h-100 reveal">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="about-section-icon">
+                        <i class="bi bi-rocket-takeoff"></i>
+                    </span>
+                    <h2 class="h5 mb-0">Current Focus</h2>
+                </div>
                 <ul class="list-unstyled mb-0">
-                    <li class="mb-2 d-flex align-items-center gap-2">
+                    <li class="d-flex align-items-center gap-2 mb-2">
                         <span class="focus-dot"></span>
-                        Building scalable web applications with Django and HTMX
+                        Building scalable web apps with Django &amp; HTMX
                     </li>
-                    <li class="mb-2 d-flex align-items-center gap-2">
+                    <li class="d-flex align-items-center gap-2 mb-2">
                         <span class="focus-dot"></span>
-                        Automating development workflows and infrastructure
+                        Automating dev workflows &amp; infrastructure
                     </li>
-                    <li class="mb-2 d-flex align-items-center gap-2">
+                    <li class="d-flex align-items-center gap-2 mb-2">
                         <span class="focus-dot"></span>
                         Contributing to open source projects
                     </li>
-                    <li class="mb-0 d-flex align-items-center gap-2">
+                    <li class="d-flex align-items-center gap-2">
                         <span class="focus-dot"></span>
                         Exploring cloud-native architectures
                     </li>
                 </ul>
             </div>
-
         </div>
+    </div>
 
-        {# Right Column #}
-        <div class="col-lg-5">
-
-            {# Specializations #}
-            <div class="reveal">
-                <h2 class="h5 mb-3 text-center text-lg-start">
-                    <span class="gradient-text">Specializations</span>
-                </h2>
-                <div class="row g-3">
-                    <div class="col-6">
-                        <div class="card h-100 text-center">
-                            <div class="card-body">
-                                <div class="contact-icon mx-auto mb-3">
-                                    <i class="bi bi-cloud"></i>
-                                </div>
-                                <h6 class="card-title">DevOps &amp; Cloud</h6>
-                                <p class="small text-secondary mb-0">Docker, Kubernetes, CI/CD</p>
-                            </div>
-                        </div>
+    {# Specializations #}
+    <div class="reveal">
+        <div class="text-center mb-4">
+            <h2 class="h4 mb-1">
+                <span class="gradient-text">Specializations</span>
+            </h2>
+            <p class="text-secondary small">What I bring to the table</p>
+        </div>
+        <div class="row g-3 justify-content-center">
+            <div class="col-6 col-md-3">
+                <div class="card h-100 text-center p-3">
+                    <div class="contact-icon mx-auto mb-3">
+                        <i class="bi bi-cloud"></i>
                     </div>
-                    <div class="col-6">
-                        <div class="card h-100 text-center">
-                            <div class="card-body">
-                                <div class="contact-icon mx-auto mb-3">
-                                    <i class="bi bi-code-slash"></i>
-                                </div>
-                                <h6 class="card-title">Backend</h6>
-                                <p class="small text-secondary mb-0">Python, Django, PostgreSQL</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="card h-100 text-center">
-                            <div class="card-body">
-                                <div class="contact-icon mx-auto mb-3">
-                                    <i class="bi bi-terminal"></i>
-                                </div>
-                                <h6 class="card-title">Linux &amp; Systems</h6>
-                                <p class="small text-secondary mb-0">Admin, Scripting, Automation</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="card h-100 text-center">
-                            <div class="card-body">
-                                <div class="contact-icon mx-auto mb-3">
-                                    <i class="bi bi-bar-chart"></i>
-                                </div>
-                                <h6 class="card-title">Data &amp; Analytics</h6>
-                                <p class="small text-secondary mb-0">ETL, Processing, Dashboards</p>
-                            </div>
-                        </div>
-                    </div>
+                    <h6 class="card-title">DevOps &amp; Cloud</h6>
+                    <p class="small text-secondary mb-0">Docker, Kubernetes, CI/CD</p>
                 </div>
             </div>
-
+            <div class="col-6 col-md-3">
+                <div class="card h-100 text-center p-3">
+                    <div class="contact-icon mx-auto mb-3">
+                        <i class="bi bi-code-slash"></i>
+                    </div>
+                    <h6 class="card-title">Backend</h6>
+                    <p class="small text-secondary mb-0">Python, Django, PostgreSQL</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card h-100 text-center p-3">
+                    <div class="contact-icon mx-auto mb-3">
+                        <i class="bi bi-terminal"></i>
+                    </div>
+                    <h6 class="card-title">Linux &amp; Systems</h6>
+                    <p class="small text-secondary mb-0">Admin, Scripting, Automation</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card h-100 text-center p-3">
+                    <div class="contact-icon mx-auto mb-3">
+                        <i class="bi bi-bar-chart"></i>
+                    </div>
+                    <h6 class="card-title">Data &amp; Analytics</h6>
+                    <p class="small text-secondary mb-0">ETL, Processing, Dashboards</p>
+                </div>
+            </div>
         </div>
     </div>
 
