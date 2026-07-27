@@ -57,6 +57,7 @@
         <div class="text-center">
             {% for skill in featured_skills %}
             <span class="skill-tag featured">
+                {% if skill.icon %}<i class="{{ skill.icon }}"></i>{% endif %}
                 {{ skill.name }}
             </span>
             {% endfor %}
