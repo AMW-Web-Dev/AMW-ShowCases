@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}AMW Portfolio — Home{% endblock %}
 
@@ -38,7 +39,7 @@
             <div class="col-lg-5 text-center">
                 <div class="hero-avatar">
                     <div class="avatar-ring">
-                        <div class="avatar-ring-inner">AMW</div>
+                        <img src="{% static 'images/Avatar_Python_Dev_512.png' %}" alt="AMW Avatar">
                     </div>
                 </div>
             </div>
