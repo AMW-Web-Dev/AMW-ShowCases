@@ -3,6 +3,11 @@ from django.utils.text import slugify
 from taggit.managers import TaggableManager
 
 
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_published=True)
+
+
 class BlogPost(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
@@ -17,6 +22,9 @@ class BlogPost(models.Model):
     published_at = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+    published = PublishedManager()
 
     class Meta:
         ordering = ["-published_at", "-created_at"]
