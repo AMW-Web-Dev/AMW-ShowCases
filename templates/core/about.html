@@ -5,96 +5,118 @@
 
 {% block content %}
 <div class="container py-5">
-    <div class="row g-5">
+
+    {# Profile Header #}
+    <div class="text-center mb-5 reveal">
+        <div class="avatar-ring mx-auto mb-4" style="width: 100px; height: 100px;">
+            <img src="{% static 'images/Avatar_Python_Dev_512.png' %}" alt="AMW Avatar">
+        </div>
+        <h1 class="mb-1">About <span class="gradient-text">Me</span></h1>
+        <p class="text-secondary lead mb-3">DevOps Engineer &middot; Python Developer</p>
+        <div class="d-flex justify-content-center gap-2">
+            <a href="https://github.com/amw" class="btn btn-outline btn-sm" target="_blank" rel="noopener">
+                <i class="bi bi-github me-1"></i>github.com/amw
+            </a>
+            <a href="https://linkedin.com/in/amw" class="btn btn-outline btn-sm" target="_blank" rel="noopener">
+                <i class="bi bi-linkedin me-1"></i>linkedin.com/in/amw
+            </a>
+        </div>
+    </div>
+
+    {# Professional Summary #}
+    <div class="row justify-content-center mb-5 reveal">
         <div class="col-lg-8">
-            <div class="reveal">
-                <h1 class="mb-4">About <span class="gradient-text">Me</span></h1>
-
-                <div class="mb-4">
-                    <h2 class="h4">Professional Summary</h2>
-                    <p class="text-secondary">
-                        DevOps Engineer and Python Developer with extensive experience in
-                        building and maintaining scalable infrastructure. Specializing in
-                        automation, containerization, and cloud-native solutions.
-                    </p>
-                </div>
-
-                <div class="mb-4">
-                    <h2 class="h4">Specializations</h2>
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="h6 card-title"><i class="bi bi-cloud me-2 text-primary"></i>DevOps</h5>
-                                    <p class="small text-secondary mb-0">Docker, Kubernetes, CI/CD, Cloud Infrastructure</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="h6 card-title"><i class="bi bi-code-slash me-2 text-primary"></i>Backend</h5>
-                                    <p class="small text-secondary mb-0">Python, Django, PostgreSQL, REST APIs</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="h6 card-title"><i class="bi bi-terminal me-2 text-primary"></i>Linux</h5>
-                                    <p class="small text-secondary mb-0">System Administration, Shell Scripting, Automation</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="h6 card-title"><i class="bi bi-bar-chart me-2 text-primary"></i>Data</h5>
-                                    <p class="small text-secondary mb-0">Analytics, ETL Pipelines, Data Processing</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <h2 class="h4">Current Focus</h2>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="bi bi-arrow-right-circle me-2 text-primary"></i>Building scalable web applications with Django and HTMX</li>
-                        <li class="mb-2"><i class="bi bi-arrow-right-circle me-2 text-primary"></i>Automating development workflows and infrastructure</li>
-                        <li class="mb-2"><i class="bi bi-arrow-right-circle me-2 text-primary"></i>Contributing to open source projects</li>
-                        <li class="mb-2"><i class="bi bi-arrow-right-circle me-2 text-primary"></i>Exploring cloud-native architectures</li>
-                    </ul>
-                </div>
+            <div class="card p-4 p-lg-5">
+                <h2 class="h4 mb-3"><i class="bi bi-person-badge me-2 text-primary"></i>Professional Summary</h2>
+                <p class="text-secondary mb-0">
+                    DevOps Engineer and Python Developer with extensive experience in
+                    building and maintaining scalable infrastructure. Specializing in
+                    automation, containerization, and cloud-native solutions.
+                    Passionate about clean code, efficient systems, and open source.
+                </p>
             </div>
         </div>
+    </div>
 
-        <div class="col-lg-4">
-            <div class="card reveal" style="position: sticky; top: 100px;">
-                <div class="card-body text-center">
-                    <div class="avatar-ring mx-auto mb-3" style="width: 120px; height: 120px;">
-                        <img src="{% static 'images/Avatar_Python_Dev_512.png' %}" alt="AMW Avatar">
+    {# Specializations #}
+    <div class="mb-5 reveal">
+        <h2 class="h4 text-center mb-4">
+            <span class="gradient-text">Specializations</span>
+        </h2>
+        <div class="row g-3 justify-content-center">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <div class="contact-icon mx-auto mb-3">
+                            <i class="bi bi-cloud"></i>
+                        </div>
+                        <h5 class="h6 card-title">DevOps &amp; Cloud</h5>
+                        <p class="small text-secondary mb-0">Docker, Kubernetes, CI/CD, Cloud Infrastructure</p>
                     </div>
-                    <h5 class="card-title">AMW</h5>
-                    <p class="text-secondary small mb-3">DevOps Engineer · Python Developer</p>
-                    <hr class="border-color-inherit" style="border-color: var(--border-color);">
-                    <ul class="list-unstyled text-start small">
-                        <li class="mb-2">
-                            <i class="bi bi-envelope me-2 text-primary"></i>
-                            <span class="text-body">amw@example.com</span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="bi bi-github me-2 text-primary"></i>
-                            <a href="https://github.com/amw" target="_blank" rel="noopener">github.com/amw</a>
-                        </li>
-                        <li class="mb-2">
-                            <i class="bi bi-linkedin me-2 text-primary"></i>
-                            <a href="https://linkedin.com/in/amw" target="_blank" rel="noopener">linkedin.com/in/amw</a>
-                        </li>
-                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <div class="contact-icon mx-auto mb-3">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <h5 class="h6 card-title">Backend Development</h5>
+                        <p class="small text-secondary mb-0">Python, Django, PostgreSQL, REST APIs</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <div class="contact-icon mx-auto mb-3">
+                            <i class="bi bi-terminal"></i>
+                        </div>
+                        <h5 class="h6 card-title">Linux &amp; Systems</h5>
+                        <p class="small text-secondary mb-0">System Administration, Shell Scripting, Automation</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <div class="contact-icon mx-auto mb-3">
+                            <i class="bi bi-bar-chart"></i>
+                        </div>
+                        <h5 class="h6 card-title">Data &amp; Analytics</h5>
+                        <p class="small text-secondary mb-0">Analytics, ETL Pipelines, Data Processing</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    {# Current Focus #}
+    <div class="row justify-content-center reveal">
+        <div class="col-lg-8">
+            <div class="card p-4 p-lg-5">
+                <h2 class="h4 mb-3"><i class="bi bi-rocket-takeoff me-2 text-primary"></i>Current Focus</h2>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2 d-flex align-items-center gap-2">
+                        <span class="contact-icon" style="width: 28px; height: 28px; font-size: 0.75rem;"><i class="bi bi-arrow-right"></i></span>
+                        Building scalable web applications with Django and HTMX
+                    </li>
+                    <li class="mb-2 d-flex align-items-center gap-2">
+                        <span class="contact-icon" style="width: 28px; height: 28px; font-size: 0.75rem;"><i class="bi bi-arrow-right"></i></span>
+                        Automating development workflows and infrastructure
+                    </li>
+                    <li class="mb-2 d-flex align-items-center gap-2">
+                        <span class="contact-icon" style="width: 28px; height: 28px; font-size: 0.75rem;"><i class="bi bi-arrow-right"></i></span>
+                        Contributing to open source projects
+                    </li>
+                    <li class="mb-0 d-flex align-items-center gap-2">
+                        <span class="contact-icon" style="width: 28px; height: 28px; font-size: 0.75rem;"><i class="bi bi-arrow-right"></i></span>
+                        Exploring cloud-native architectures
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
 </div>
 {% endblock %}
