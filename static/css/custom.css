@@ -249,6 +249,7 @@ a:hover {
   transition: all var(--transition);
   position: relative;
   overflow: hidden;
+  color: var(--text-primary);
 }
 
 .card::before {
