@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://amw-portfolio.onrender.com/sitemap.xml
