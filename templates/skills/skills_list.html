@@ -30,7 +30,6 @@
             {% for skill in category.skills.all %}
             <span class="skill-tag {% if skill.featured %}featured{% endif %}">
                 {{ skill.name }}
-                <span class="exp">{{ skill.years_experience }}y</span>
             </span>
             {% endfor %}
         </div>

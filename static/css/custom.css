@@ -45,6 +45,15 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); }
 
 .text-muted { color: var(--text-muted) !important; }
 
+/* Override Bootstrap's hardcoded text colors for dark theme compatibility */
+.text-secondary { color: var(--text-secondary) !important; }
+.text-body { color: var(--text-primary) !important; }
+
+.card-title,
+.card-text { color: var(--text-primary); }
+
+.card-text.text-secondary { color: var(--text-secondary) !important; }
+
 /* ─── Links ─── */
 a {
   color: var(--accent-indigo);
@@ -141,22 +150,51 @@ a:hover {
   font-weight: 600;
   padding: 0.6rem 1.5rem;
   border-radius: var(--radius-md);
-  transition: all var(--transition);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              background 0.3s ease,
+              border-color 0.3s ease,
+              color 0.3s ease;
   border: none;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn:hover::after {
+  opacity: 1;
+}
+
+.btn:active {
+  transform: scale(0.96) !important;
 }
 
 .btn-primary {
   background: var(--gradient-primary);
   color: #fff;
   box-shadow: var(--shadow-glow);
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease-in-out infinite;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--glow-indigo);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: var(--glow-indigo), 0 8px 30px rgba(129, 140, 248, 0.25);
   color: #fff;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .btn-outline {
@@ -169,6 +207,8 @@ a:hover {
   border-color: var(--accent-indigo);
   color: var(--accent-indigo);
   background: rgba(129, 140, 248, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(129, 140, 248, 0.12);
 }
 
 .btn-sm {
@@ -183,7 +223,21 @@ a:hover {
 
 @keyframes pulseGlow {
   0%, 100% { box-shadow: var(--shadow-glow); }
-  50% { box-shadow: 0 4px 30px rgba(129, 140, 248, 0.3); }
+  50% { box-shadow: 0 4px 30px rgba(129, 140, 248, 0.35), 0 0 60px rgba(129, 140, 248, 0.15); }
+}
+
+/* Icon animation inside buttons */
+.btn i {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn:hover i {
+  transform: translateX(3px) scale(1.1);
+}
+
+.btn-outline:hover i {
+  transform: translateX(3px) scale(1.1);
 }
 
 /* ─── Cards ─── */
@@ -443,12 +497,6 @@ section {
   transform: translateY(-2px);
   box-shadow: var(--glow-card);
   background: var(--bg-elevated);
-}
-
-.skill-tag .exp {
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  font-weight: 400;
 }
 
 .skill-tag.featured {
