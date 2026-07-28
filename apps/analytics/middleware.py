@@ -34,6 +34,8 @@ class AnalyticsMiddleware:
             return False
         if request.headers.get("HX-Request"):
             return False
+        if hasattr(request, "user") and request.user.is_authenticated and request.user.is_staff:
+            return False
         return True
 
     def get_client_ip(self, request):
