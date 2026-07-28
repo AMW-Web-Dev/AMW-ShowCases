@@ -6,7 +6,7 @@ from apps.blog.models import BlogPost
 from apps.projects.models import Project
 from apps.skills.models import Skill
 
-from .models import ContactMessage
+from apps.contact.models import ContactMessage
 
 
 class HomepageView(TemplateView):
