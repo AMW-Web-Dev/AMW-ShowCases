@@ -2,7 +2,7 @@
 
 Personal portfolio website showcasing Django backend engineering skills, projects, and technical expertise. Built with Django 6, HTMX, Bootstrap 5, and deployed on Render.
 
-**Website**: [amw.work.gd](https://amw.work.gd) *(coming soon)*
+**Website**: [amw.work.gd](https://amw.work.gd) *(Live Now)*
 
 ---
 
