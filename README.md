@@ -1,8 +1,8 @@
 # AMW ShowCases
 
-Professional portfolio website showcasing Django backend engineering skills, projects, and technical expertise. Built with Django 6, HTMX, Bootstrap 5, and deployed on Render.
+Personal portfolio website showcasing Django backend engineering skills, projects, and technical expertise. Built with Django 6, HTMX, Bootstrap 5, and deployed on Render.
 
-**Live Demo**: [amw.work.gd](https://amw.work.gd)
+**Website**: [amw.work.gd](https://amw.work.gd) *(coming soon)*
 
 ---
 
