@@ -1,19 +1,25 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'Core:Homepage' %}">AMW</a>
-
-        <div class="d-flex align-items-center gap-2 nav-controls">
+        <div class="d-flex align-items-center gap-2">
+            <a class="navbar-brand" href="{% url 'Core:Homepage' %}">AMW</a>
             <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                 <i class="bi bi-sun-fill"></i>
             </button>
-            {% if user.is_staff %}
-            <div class="cpanel-inline">
-                <div class="dropdown cpanel-nav">
-                    <a class="dropdown-toggle cpanel-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        </div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                {% if user.is_staff %}
+                <li class="nav-item dropdown cpanel-nav">
+                    <a class="nav-link dropdown-toggle cpanel-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-grid-1x2-fill me-1"></i>CPanel
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end cpanel-dropdown">
+                    <ul class="dropdown-menu cpanel-dropdown">
                         <li>
                             <a class="dropdown-item" href="{% url 'admin:index' %}">
                                 <i class="bi bi-speedometer2 me-2"></i>Admin
@@ -26,16 +32,8 @@
                             </a>
                         </li>
                     </ul>
-                </div>
-            </div>
-            {% endif %}
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+                </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'Core:Homepage' %}">Home</a>
                 </li>
