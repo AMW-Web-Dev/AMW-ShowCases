@@ -36,11 +36,15 @@ CSRF_TRUSTED_ORIGINS = [
     if origin.strip()
 ]
 
-# Static files
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-# CloudFlare R2 for media
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+# Storage backends (Django 6.0 uses STORAGES dict)
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 AWS_ACCESS_KEY_ID = os.environ.get("R2_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("R2_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = os.environ.get("R2_BUCKET_NAME")
