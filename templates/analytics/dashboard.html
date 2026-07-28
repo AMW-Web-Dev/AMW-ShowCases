@@ -142,16 +142,18 @@
             maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    labels: { color: isDark ? '#e2e8f0' : '#1e293b' }
+                    labels: { color: isDark ? '#e2e8f0' : '#334155' }
                 }
             },
             scales: {
                 x: {
-                    ticks: { color: isDark ? '#94a3b8' : '#64748b' }
+                    ticks: { color: isDark ? '#94a3b8' : '#475569' },
+                    grid: { color: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)' }
                 },
                 y: {
                     beginAtZero: true,
-                    ticks: { color: isDark ? '#94a3b8' : '#64748b' }
+                    ticks: { color: isDark ? '#94a3b8' : '#475569' },
+                    grid: { color: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)' }
                 }
             }
         }
