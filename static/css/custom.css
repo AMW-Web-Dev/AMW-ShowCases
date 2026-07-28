@@ -122,44 +122,43 @@ a:hover {
 }
 
 /* ─── CPanel Dropdown ─── */
-.cpanel-center {
+.nav-controls {
   flex: 1;
-  display: flex;
   justify-content: center;
 }
 
-.cpanel-center .navbar-nav {
-  flex-direction: row;
+.cpanel-inline .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition);
+  white-space: nowrap;
 }
 
-.cpanel-link {
-  position: relative;
-  padding-left: 1.75rem !important;
+.cpanel-inline .dropdown-toggle:hover,
+.cpanel-inline .dropdown-toggle:focus,
+.cpanel-nav.show .dropdown-toggle {
+  color: var(--accent-indigo);
+  border-color: var(--accent-indigo);
+  background: color-mix(in srgb, var(--accent-indigo) 8%, var(--bg-card));
 }
 
-.cpanel-link::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 18px;
-  background: var(--accent-indigo);
-  border-radius: 2px;
-  opacity: 0.6;
-  transition: opacity var(--transition);
-}
-
-.cpanel-link:hover::before,
-.cpanel-nav.show .cpanel-link::before {
-  opacity: 1;
-}
-
-.cpanel-link i {
+.cpanel-inline .dropdown-toggle i {
   color: var(--accent-indigo);
   font-size: 0.85rem;
-  margin-right: 0.35rem;
+}
+
+.cpanel-inline .dropdown-toggle::after {
+  font-size: 0.65rem;
+  margin-left: 0.25rem;
 }
 
 .cpanel-dropdown {
@@ -194,6 +193,23 @@ a:hover {
 .cpanel-dropdown .dropdown-divider {
   border-color: var(--border-color) !important;
   margin: 0.25rem 0 !important;
+}
+
+[data-theme="light"] .cpanel-inline .dropdown-toggle {
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .cpanel-inline .dropdown-toggle:hover,
+[data-theme="light"] .cpanel-inline .dropdown-toggle:focus,
+[data-theme="light"] .cpanel-nav.show .dropdown-toggle {
+  background: #eef2ff;
+  border-color: var(--accent-indigo);
+  color: var(--accent-indigo);
+}
+
+[data-theme="light"] .cpanel-dropdown {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* ─── Theme Toggle ─── */
