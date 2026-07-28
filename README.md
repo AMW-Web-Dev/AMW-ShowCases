@@ -174,8 +174,6 @@ The project includes a `render.yaml` blueprint for one-click deployment:
 | `/blog/` | Blog listing (filterable by tag) |
 | `/skills/` | Skills categories |
 | `/contact/` | Contact form |
-| `/admin/` | Django admin |
-| `/dashboard/` | Analytics dashboard |
 | `/health/` | Health check (JSON) |
 
 ## License
