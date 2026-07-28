@@ -123,56 +123,62 @@ a:hover {
 
 /* ─── CPanel Dropdown ─── */
 .cpanel-link {
-  background: var(--gradient-primary) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  font-weight: 700 !important;
-  border: 1px solid var(--accent-indigo) !important;
-  border-radius: var(--radius-sm) !important;
-  padding: 0.4rem 0.85rem !important;
-  transition: all var(--transition) !important;
+  position: relative;
+  padding-left: 1.75rem !important;
 }
 
-.cpanel-link::after {
-  display: none !important;
+.cpanel-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 18px;
+  background: var(--accent-indigo);
+  border-radius: 2px;
+  opacity: 0.6;
+  transition: opacity var(--transition);
 }
 
-.cpanel-link:hover,
-.cpanel-nav.show .cpanel-link {
-  background: var(--gradient-primary) !important;
-  -webkit-background-clip: unset !important;
-  background-clip: unset !important;
-  -webkit-text-fill-color: #fff !important;
-  color: #fff !important;
-  box-shadow: 0 0 20px rgba(129, 140, 248, 0.3);
+.cpanel-link:hover::before,
+.cpanel-nav.show .cpanel-link::before {
+  opacity: 1;
+}
+
+.cpanel-link i {
+  color: var(--accent-indigo);
+  font-size: 0.85rem;
+  margin-right: 0.35rem;
 }
 
 .cpanel-dropdown {
   background: var(--bg-card) !important;
   border: 1px solid var(--border-color) !important;
+  border-top: 2px solid var(--accent-indigo) !important;
   border-radius: var(--radius-md) !important;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
-  padding: 0.5rem !important;
+  padding: 0.4rem !important;
   min-width: 180px !important;
+  margin-top: 0.5rem !important;
 }
 
 .cpanel-dropdown .dropdown-item {
   border-radius: var(--radius-sm) !important;
-  padding: 0.55rem 0.85rem !important;
-  font-weight: 500 !important;
+  padding: 0.5rem 0.85rem !important;
+  font-size: 0.9rem !important;
   transition: all var(--transition) !important;
 }
 
 .cpanel-dropdown .dropdown-item:hover {
   background: var(--bg-hover) !important;
-  color: var(--text-primary) !important;
 }
 
 .cpanel-dropdown .dropdown-item i {
   color: var(--accent-indigo) !important;
   width: 18px;
   text-align: center;
+  font-size: 0.9rem;
 }
 
 .cpanel-dropdown .dropdown-divider {
