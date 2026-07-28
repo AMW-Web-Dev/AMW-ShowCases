@@ -45,8 +45,8 @@ AWS_ACCESS_KEY_ID = os.environ.get("R2_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("R2_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = os.environ.get("R2_BUCKET_NAME")
 AWS_S3_ENDPOINT_URL = os.environ.get("R2_ENDPOINT_URL")
+AWS_S3_CUSTOM_DOMAIN = "pub-635d58e5f8ab473eaecfd19dbfaa82e2.r2.dev"
 AWS_S3_REGION_NAME = "auto"
-AWS_DEFAULT_ACL = "public-read"
 AWS_S3_OBJECT_PARAMETERS = {
     "CacheControl": "max-age=86400",
 }
