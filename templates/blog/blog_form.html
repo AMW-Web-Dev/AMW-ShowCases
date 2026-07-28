@@ -1,40 +1,139 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}{% if object %}Edit Post{% else %}New Post{% endif %} — AMW Portfolio{% endblock %}
+{% block title %} | {% if object %}Edit Post{% else %}New Post{% endif %}{% endblock %}
 
 {% block content %}
 <div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <h1 class="mb-4">{% if object %}Edit <span class="gradient-text">Post</span>{% else %}New <span class="gradient-text">Post</span>{% endif %}</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
 
-            <form method="post" enctype="multipart/form-data" class="card p-4">
-                {% csrf_token %}
+    <div class="blog-form-split row g-4">
+      {# ─── Left Column — Editor ─── #}
+      <div class="col-lg-8">
+        <div class="blog-form-editor">
+          {# Title #}
+          <div class="mb-4">
+            {{ form.title }}
+            {% if form.title.errors %}
+            <div class="invalid-feedback d-block">{{ form.title.errors }}</div>
+            {% endif %}
+          </div>
 
-                {% for field in form %}
-                <div class="mb-3">
-                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.errors %}
-                    <div class="invalid-feedback d-block">
-                        {{ field.errors }}
-                    </div>
-                    {% endif %}
-                    {% if field.help_text %}
-                    <div class="form-text text-muted small">{{ field.help_text }}</div>
-                    {% endif %}
-                </div>
-                {% endfor %}
-
-                <div class="d-flex gap-2 mt-3">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-check2 me-1"></i>{% if object %}Update{% else %}Create{% endif %}
-                    </button>
-                    <a href="{% url 'blog:list' %}" class="btn btn-outline">Cancel</a>
-                </div>
-            </form>
+          {# Content #}
+          <div class="position-relative">
+            {{ form.content }}
+            {% if form.content.errors %}
+            <div class="invalid-feedback d-block">{{ form.content.errors }}</div>
+            {% endif %}
+            <div class="blog-editor-hint">
+              <i class="bi bi-markdown"></i> Supports Markdown formatting
+            </div>
+          </div>
         </div>
+      </div>
+
+      {# ─── Right Column — Metadata ─── #}
+      <div class="col-lg-4">
+        <div class="blog-form-sidebar d-flex flex-column gap-3">
+
+          {# ─── Publish Status ─── #}
+          <div class="blog-form-card">
+            <div class="blog-form-card-header">
+              <i class="bi bi-eye"></i>
+              <span>Publish Status</span>
+            </div>
+            <div class="blog-form-card-body">
+              <label class="blog-form-toggle">
+                {{ form.is_published }}
+                <span class="blog-form-toggle-slider"></span>
+                <span class="blog-form-toggle-label">Published</span>
+              </label>
+              <p class="blog-form-hint">
+                {% if object %}
+                Uncheck to save as draft without publishing.
+                {% else %}
+                Keep unchecked to save as draft.
+                {% endif %}
+              </p>
+            </div>
+          </div>
+
+          {# ─── Featured Image ─── #}
+          <div class="blog-form-card">
+            <div class="blog-form-card-header">
+              <i class="bi bi-card-image"></i>
+              <span>Featured Image</span>
+            </div>
+            <div class="blog-form-card-body">
+              {% if object and object.image %}
+              <div class="blog-form-image-preview">
+                <img src="{{ object.image.url }}" alt="Current featured image">
+              </div>
+              {% endif %}
+              <div class="mt-2">
+                {{ form.image }}
+              </div>
+              {% if form.image.errors %}
+              <div class="invalid-feedback d-block">{{ form.image.errors }}</div>
+              {% endif %}
+              <p class="blog-form-hint mt-2">Recommended: 1200×630px for social sharing.</p>
+            </div>
+          </div>
+
+          {# ─── Excerpt ─── #}
+          <div class="blog-form-card">
+            <div class="blog-form-card-header">
+              <i class="bi bi-text-paragraph"></i>
+              <span>Excerpt</span>
+            </div>
+            <div class="blog-form-card-body">
+              {{ form.excerpt }}
+              {% if form.excerpt.errors %}
+              <div class="invalid-feedback d-block">{{ form.excerpt.errors }}</div>
+              {% endif %}
+              <p class="blog-form-hint mt-2">Shown in the blog listing. Leave blank to auto-generate from content.</p>
+            </div>
+          </div>
+
+          {# ─── Tags ─── #}
+          <div class="blog-form-card">
+            <div class="blog-form-card-header">
+              <i class="bi bi-tags"></i>
+              <span>Tags</span>
+            </div>
+            <div class="blog-form-card-body">
+              {{ form.tags }}
+              {% if form.tags.errors %}
+              <div class="invalid-feedback d-block">{{ form.tags.errors }}</div>
+              {% endif %}
+              <p class="blog-form-hint mt-2">Comma-separated tags, e.g. django, python, devops</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
+
+    {# ─── Bottom Actions ─── #}
+    <div class="blog-form-actions">
+      <div class="blog-form-actions-left">
+        <button type="submit" class="btn btn-primary">
+          <i class="bi bi-check2"></i>
+          {% if object %}Update Post{% else %}Publish Post{% endif %}
+        </button>
+        <a href="{% url 'Blog:BlogList' %}" class="btn btn-outline">
+          <i class="bi bi-x"></i> Cancel
+        </a>
+      </div>
+      {% if user.is_staff and object %}
+      <div class="blog-form-actions-right">
+        <a href="{% url 'Blog:BlogDelete' object.slug %}" class="btn btn-outline blog-form-delete-btn">
+          <i class="bi bi-trash"></i> Delete
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </form>
 </div>
 {% endblock %}

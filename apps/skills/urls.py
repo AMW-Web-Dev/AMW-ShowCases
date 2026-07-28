@@ -2,8 +2,8 @@ from django.urls import path
 
 from . import skills as skills_views
 
-app_name = "skills"
+app_name = "Skills"
 
 urlpatterns = [
-    path("", skills_views.SkillsListView.as_view(), name="list"),
+    path("", skills_views.SkillsListView.as_view(), name="SkillsList"),
 ]

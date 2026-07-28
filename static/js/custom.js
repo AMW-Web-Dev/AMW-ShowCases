@@ -51,43 +51,45 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ───────────────────────────────────────────
-  // 2. Hero Particles (Canvas)
+  // 2. Background Particles (full-page canvas)
   // ───────────────────────────────────────────
-  const heroCanvas = document.getElementById('hero-particles');
-  if (heroCanvas) {
-    const ctx = heroCanvas.getContext('2d');
+  const bgCanvas = document.getElementById('bg-particles');
+  if (bgCanvas) {
+    const ctx = bgCanvas.getContext('2d');
     let animationId;
     let mouseX = 0, mouseY = 0;
 
-    function resizeCanvas() {
-      heroCanvas.width = heroCanvas.offsetWidth;
-      heroCanvas.height = heroCanvas.offsetHeight;
+    function resizeBgCanvas() {
+      bgCanvas.width = window.innerWidth;
+      bgCanvas.height = window.innerHeight;
     }
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    resizeBgCanvas();
+    window.addEventListener('resize', resizeBgCanvas);
 
-    // Particle class — geometric shapes, not dots
-    class GeoParticle {
+    class BgParticle {
       constructor() {
         this.reset();
       }
 
       reset() {
-        this.x = Math.random() * heroCanvas.width;
-        this.y = Math.random() * heroCanvas.height;
-        this.size = Math.random() * 6 + 2;
+        this.x = Math.random() * bgCanvas.width;
+        this.y = Math.random() * bgCanvas.height;
+        this.size = Math.random() * 5 + 2;
         this.speedX = (Math.random() - 0.5) * 0.5;
         this.speedY = (Math.random() - 0.5) * 0.5;
-        this.opacity = Math.random() * 0.4 + 0.1;
+        this.opacity = Math.random() * 0.3 + 0.18;
+        const isDark = html.getAttribute('data-theme') === 'dark';
+        const indigo = isDark ? '129, 140, 248' : '79, 70, 186';
+        const cyan = isDark ? '34, 211, 238' : '8, 145, 178';
+        this.color = Math.random() > 0.5
+          ? `rgba(${indigo}, ${this.opacity})`
+          : `rgba(${cyan}, ${this.opacity})`;
         this.shape = Math.random() > 0.5 ? 'circle' : 'rounded-rect';
-        this.color = Math.random() > 0.6
-          ? `rgba(129, 140, 248, ${this.opacity})`   // indigo
-          : `rgba(34, 211, 238, ${this.opacity})`;     // cyan
         this.rotation = 0;
-        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.008;
         this.life = 0;
-        this.maxLife = 300 + Math.random() * 200;
+        this.maxLife = 500 + Math.random() * 300;
       }
 
       update() {
@@ -96,21 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
         this.rotation += this.rotationSpeed;
         this.life++;
 
-        // Mouse parallax
-        const dx = mouseX - this.x;
-        const dy = mouseY - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 200) {
-          const force = (200 - dist) / 200 * 0.3;
-          this.x -= dx * force * 0.01;
-          this.y -= dy * force * 0.01;
-        }
-
-        // Wrap around edges with padding
-        if (this.x < -50) this.x = heroCanvas.width + 50;
-        if (this.x > heroCanvas.width + 50) this.x = -50;
-        if (this.y < -50) this.y = heroCanvas.height + 50;
-        if (this.y > heroCanvas.height + 50) this.y = -50;
+        if (this.x < -50) this.x = bgCanvas.width + 50;
+        if (this.x > bgCanvas.width + 50) this.x = -50;
+        if (this.y < -50) this.y = bgCanvas.height + 50;
+        if (this.y > bgCanvas.height + 50) this.y = -50;
 
         if (this.life > this.maxLife) this.reset();
       }
@@ -119,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
-        ctx.globalAlpha = this.opacity * (1 - this.life / this.maxLife * 0.5);
+        ctx.globalAlpha = this.opacity;
 
         if (this.shape === 'circle') {
           ctx.beginPath();
@@ -128,8 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.fill();
         } else {
           const w = this.size * 1.5;
-          const h = this.size;
-          const r = 2;
+          const h = this.size * 0.9;
+          const r = 1.5;
           ctx.beginPath();
           ctx.moveTo(-w / 2 + r, -h / 2);
           ctx.lineTo(w / 2 - r, -h / 2);
@@ -149,57 +140,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Connection lines between nearby particles
-    function drawConnections(particles) {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+    const particleCount = Math.min(60, Math.floor(bgCanvas.width / 25));
+    const particles = Array.from({ length: particleCount }, () => new BgParticle());
 
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(129, 140, 248, ${0.06 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
+    function animateBg() {
+      ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      animationId = requestAnimationFrame(animateBg);
     }
 
-    // Create particles
-    const particleCount = Math.min(60, Math.floor(heroCanvas.width / 20));
-    const particles = Array.from({ length: particleCount }, () => new GeoParticle());
+    animateBg();
 
-    // Track mouse for parallax
-    heroCanvas.addEventListener('mousemove', (e) => {
-      const rect = heroCanvas.getBoundingClientRect();
-      mouseX = e.clientX - rect.left;
-      mouseY = e.clientY - rect.top;
-    });
-
-    heroCanvas.addEventListener('mouseleave', () => {
-      mouseX = -9999;
-      mouseY = -9999;
-    });
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
-
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-
-      drawConnections(particles);
-      animationId = requestAnimationFrame(animateParticles);
-    }
-
-    animateParticles();
-
-    // Cleanup on page unload
     window.addEventListener('beforeunload', () => {
       if (animationId) cancelAnimationFrame(animationId);
     });
@@ -254,7 +205,34 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ───────────────────────────────────────────
-  // 6. HTMX Loading State
+  // 6. Back to Top
+  // ───────────────────────────────────────────
+  const backToTop = document.getElementById('back-to-top');
+
+  if (backToTop) {
+    const threshold = 400;
+    let ticking = false;
+
+    function onScroll() {
+      backToTop.classList.toggle('visible', window.scrollY > threshold);
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => { onScroll(); ticking = false; });
+        ticking = true;
+      }
+    });
+
+    onScroll();
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ───────────────────────────────────────────
+  // 7. HTMX Loading State
   // ───────────────────────────────────────────
   if (typeof htmx !== 'undefined') {
     document.body.addEventListener('htmx:beforeRequest', (e) => {

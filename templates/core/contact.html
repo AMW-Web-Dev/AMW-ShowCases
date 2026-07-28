@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Contact — AMW Portfolio{% endblock %}
+{% block title %} | Contact{% endblock %}
 
 {% block content %}
 <div class="container py-5">
@@ -17,36 +17,42 @@
 
             {# Contact Info Cards #}
             <div class="row g-3 mb-5 reveal">
-                <div class="col-md-4">
-                    <div class="contact-info-card card text-center h-100">
-                        <div class="card-body">
-                            <div class="contact-icon mx-auto mb-3">
+                <div class="col-12">
+                    <div class="contact-info-card card h-100">
+                        <div class="card-body d-flex align-items-center gap-3 gap-lg-4">
+                            <div class="contact-icon flex-shrink-0">
                                 <i class="bi bi-envelope-fill"></i>
                             </div>
-                            <p class="small text-secondary mb-1">Email</p>
-                            <a href="mailto:amw@example.com" class="fw-500 text-decoration-none">amw@example.com</a>
+                            <div class="min-w-0">
+                                <p class="small text-secondary mb-0">Email</p>
+                                <a href="mailto:waddah.ahmd@protonmail.com" class="fw-500 text-decoration-none fs-5">waddah.ahmd@protonmail.com</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="contact-info-card card text-center h-100">
-                        <div class="card-body">
-                            <div class="contact-icon mx-auto mb-3">
+                <div class="col-md-6">
+                    <div class="contact-info-card card h-100">
+                        <div class="card-body d-flex align-items-center gap-3 gap-lg-4">
+                            <div class="contact-icon flex-shrink-0">
                                 <i class="bi bi-telephone-fill"></i>
                             </div>
-                            <p class="small text-secondary mb-1">Phone</p>
-                            <span class="fw-500">+20 100 000 0000</span>
+                            <div>
+                                <p class="small text-secondary mb-0">Mobile - WhatsApp</p>
+                                <span class="fw-500 fs-5">+20 114 159 169 5</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="contact-info-card card text-center h-100">
-                        <div class="card-body">
-                            <div class="contact-icon mx-auto mb-3">
+                <div class="col-md-6">
+                    <div class="contact-info-card card h-100">
+                        <div class="card-body d-flex align-items-center gap-3 gap-lg-4">
+                            <div class="contact-icon flex-shrink-0">
                                 <i class="bi bi-geo-alt-fill"></i>
                             </div>
-                            <p class="small text-secondary mb-1">Location</p>
-                            <span class="fw-500">Cairo, Egypt</span>
+                            <div>
+                                <p class="small text-secondary mb-0">Location</p>
+                                <span class="fw-500 fs-5">Al Shaikh Zayed, Giza, Egypt</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,10 +62,10 @@
             <div class="text-center mb-5 reveal">
                 <p class="text-secondary small mb-3">Or find me on</p>
                 <div class="d-flex justify-content-center gap-3">
-                    <a href="https://github.com/amw" class="btn btn-outline" target="_blank" rel="noopener">
+                    <a href="https://github.com/AhmadMWaddah" class="btn btn-outline" target="_blank" rel="noopener">
                         <i class="bi bi-github me-2"></i>GitHub
                     </a>
-                    <a href="https://linkedin.com/in/amw" class="btn btn-outline" target="_blank" rel="noopener">
+                    <a href="https://www.linkedin.com/in/ahmadmwaddah" class="btn btn-outline" target="_blank" rel="noopener">
                         <i class="bi bi-linkedin me-2"></i>LinkedIn
                     </a>
                 </div>
@@ -67,11 +73,11 @@
 
             {# Contact Form #}
             <div class="reveal">
-                <form method="post" action="{% url 'core:contact' %}" class="card p-4 p-lg-5">
+                <form method="post" action="{% url 'Core:Contact' %}" class="card p-4 p-lg-5">
                     {% csrf_token %}
                     <div class="text-center mb-4">
                         <h5 class="card-title mb-1">Send a Message</h5>
-                        <p class="text-secondary small mb-0">I'll get back to you as soon as possible</p>
+                        <p class="text-secondary small mb-0">I'll get back to you as soon as possible mostly ( 24 - 48 ) Hrs</p>
                     </div>
                     <div class="row g-3">
                         <div class="col-md-6">

@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from decouple import Csv, config
+from django.contrib.messages import constants as message_constants
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -108,9 +109,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "humans.User"
 
 # Login URLs
-LOGIN_URL = "humans:login"
-LOGIN_REDIRECT_URL = "core:homepage"
-LOGOUT_REDIRECT_URL = "core:homepage"
+LOGIN_URL = "/admin/login/"
+LOGIN_REDIRECT_URL = "Core:Homepage"
+LOGOUT_REDIRECT_URL = "Core:Homepage"
+
+# Message tags → Bootstrap alert classes
+MESSAGE_TAGS = {
+    message_constants.DEBUG: "secondary",
+    message_constants.INFO: "info",
+    message_constants.SUCCESS: "success",
+    message_constants.WARNING: "warning",
+    message_constants.ERROR: "danger",
+}
 
 # Markdownx
 MARKDOWNX_URLS_PATH = "/markdownx/markdownify/"

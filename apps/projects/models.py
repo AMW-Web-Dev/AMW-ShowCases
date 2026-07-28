@@ -4,7 +4,7 @@ from django.utils.text import slugify
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True, max_length=200)
     description = models.TextField()
     long_description = models.TextField(blank=True)
     image = models.ImageField(upload_to="projects/", blank=True, null=True)
@@ -19,7 +19,7 @@ class Project(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ["-created_at"]
+        ordering = ["order", "-created_at"]
 
     def __str__(self):
         return self.title

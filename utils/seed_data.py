@@ -3,14 +3,14 @@
 Seed script — populates the database with curated sample data.
 
 Usage:
-    cd /path/to/project && python Utils/seed_data.py
+    cd /path/to/project && python utils/seed_data.py
 
 Uses the development settings by default. Override via DJANGO_SETTINGS_MODULE.
 """
 
 import os
 import sys
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 # Ensure project root is on sys.path
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,6 +19,7 @@ sys.path.insert(0, _PROJECT_ROOT)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.development")
 
 import django
+
 django.setup()
 
 from django.utils import timezone
@@ -32,6 +33,7 @@ from apps.projects.models import Project
 from apps.blog.models import BlogPost
 
 User = get_user_model()
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -64,98 +66,243 @@ def _now():
 
 SEED_SKILLS = [
     {
-        "category": ("Languages", "programming-languages", "Programming & Scripting Languages", "code-slash"),
+        "category": (
+            "Languages",
+            "programming-languages",
+            "Programming & Scripting Languages",
+            "code-slash",
+        ),
         "skills": [
-            ("Python", "python", 95, 8,
-             "Expert-level Python with extensive experience in web development, automation, data processing, and API design.",
-             "devicon-python-plain"),
-            ("TypeScript", "typescript", 80, 5,
-             "Strong TypeScript skills for frontend and backend (Node.js) development.",
-             "devicon-typescript-plain"),
-            ("JavaScript", "javascript", 85, 8,
-             "Deep understanding of modern JavaScript (ES6+) including async patterns and DOM APIs.",
-             "devicon-javascript-plain"),
-            ("Shell Scripting", "shell", 90, 8,
-             "Advanced Bash/Zsh scripting for automation, CI/CD pipelines, and system administration.",
-             "devicon-bash-plain"),
-            ("SQL", "sql", 85, 7,
-             "Proficient in complex queries, query optimization, and database design across PostgreSQL and MySQL.",
-             "bi bi-database"),
-            ("Go", "golang", 60, 3,
-             "Working knowledge of Go for building CLI tools and performant microservices.",
-             "devicon-go-plain"),
+            (
+                "Python",
+                "python",
+                95,
+                8,
+                "Expert-level Python with extensive experience in web development, automation, data processing, and API design.",
+                "devicon-python-plain",
+            ),
+            (
+                "TypeScript",
+                "typescript",
+                80,
+                5,
+                "Strong TypeScript skills for frontend and backend (Node.js) development.",
+                "devicon-typescript-plain",
+            ),
+            (
+                "JavaScript",
+                "javascript",
+                85,
+                8,
+                "Deep understanding of modern JavaScript (ES6+) including async patterns and DOM APIs.",
+                "devicon-javascript-plain",
+            ),
+            (
+                "Shell Scripting",
+                "shell",
+                90,
+                8,
+                "Advanced Bash/Zsh scripting for automation, CI/CD pipelines, and system administration.",
+                "devicon-bash-plain",
+            ),
+            (
+                "SQL",
+                "sql",
+                85,
+                7,
+                "Proficient in complex queries, query optimization, and database design across PostgreSQL and MySQL.",
+                "bi bi-database",
+            ),
+            (
+                "Go",
+                "golang",
+                60,
+                3,
+                "Working knowledge of Go for building CLI tools and performant microservices.",
+                "devicon-go-plain",
+            ),
         ],
     },
     {
-        "category": ("Frameworks & Libraries", "frameworks", "Web Frameworks & Application Libraries", "layers"),
+        "category": (
+            "Frameworks & Libraries",
+            "frameworks",
+            "Web Frameworks & Application Libraries",
+            "layers",
+        ),
         "skills": [
-            ("Django", "django", 95, 7,
-             "Expert-level Django: ORM, class-based views, REST framework, middleware, custom management commands.",
-             "devicon-django-plain"),
-            ("FastAPI", "fastapi", 75, 3,
-             "Building async APIs with FastAPI, Pydantic validation, and OpenAPI documentation.",
-             "devicon-fastapi-plain"),
-            ("React", "react", 70, 4,
-             "Building interactive UIs with React hooks, context API, and state management.",
-             "devicon-react-plain"),
-            ("HTMX", "htmx", 85, 2,
-             "Building dynamic UIs with HTMX — hypermedia-driven approach replacing heavy frontend frameworks.",
-             ""),
-            ("Bootstrap", "bootstrap", 90, 7,
-             "Extensive experience with Bootstrap 4/5 theming, custom components, and responsive design.",
-             "devicon-bootstrap-plain"),
-            ("Tailwind CSS", "tailwind-css", 75, 3,
-             "Utility-first CSS with Tailwind for rapid, consistent UI development.",
-             "devicon-tailwindcss-plain"),
+            (
+                "Django",
+                "django",
+                95,
+                7,
+                "Expert-level Django: ORM, class-based views, REST framework, middleware, custom management commands.",
+                "devicon-django-plain",
+            ),
+            (
+                "FastAPI",
+                "fastapi",
+                75,
+                3,
+                "Building async APIs with FastAPI, Pydantic validation, and OpenAPI documentation.",
+                "devicon-fastapi-plain",
+            ),
+            (
+                "React",
+                "react",
+                70,
+                4,
+                "Building interactive UIs with React hooks, context API, and state management.",
+                "devicon-react-plain",
+            ),
+            (
+                "HTMX",
+                "htmx",
+                85,
+                2,
+                "Building dynamic UIs with HTMX — hypermedia-driven approach replacing heavy frontend frameworks.",
+                "",
+            ),
+            (
+                "Bootstrap",
+                "bootstrap",
+                90,
+                7,
+                "Extensive experience with Bootstrap 4/5 theming, custom components, and responsive design.",
+                "devicon-bootstrap-plain",
+            ),
+            (
+                "Tailwind CSS",
+                "tailwind-css",
+                75,
+                3,
+                "Utility-first CSS with Tailwind for rapid, consistent UI development.",
+                "devicon-tailwindcss-plain",
+            ),
         ],
     },
     {
-        "category": ("DevOps & Cloud", "devops-cloud", "Infrastructure, Cloud & DevOps Tooling", "cloud"),
+        "category": (
+            "DevOps & Cloud",
+            "devops-cloud",
+            "Infrastructure, Cloud & DevOps Tooling",
+            "cloud",
+        ),
         "skills": [
-            ("Docker", "docker", 90, 6,
-             "Containerization expert: multi-stage builds, Docker Compose, swarm, optimization.",
-             "devicon-docker-plain"),
-            ("Kubernetes", "kubernetes", 80, 4,
-             "Managing production clusters: deployments, Helm charts, service mesh, RBAC.",
-             "devicon-kubernetes-plain"),
-            ("AWS", "aws", 85, 6,
-             "AWS services: EC2, S3, RDS, Lambda, CloudFront, IAM, VPC design.",
-             "devicon-amazonwebservices-plain-wordmark"),
-            ("CI/CD", "cicd", 90, 6,
-             "Designing and maintaining CI/CD pipelines with GitHub Actions, GitLab CI, and Jenkins.",
-             "bi bi-infinity"),
-            ("Terraform", "terraform", 75, 4,
-             "Infrastructure-as-Code with Terraform for cloud resource provisioning.",
-             "devicon-terraform-plain"),
-            ("Linux", "linux", 95, 10,
-             "Expert Linux administration: systemd, networking, security hardening, performance tuning.",
-             "devicon-linux-plain"),
-            ("Nginx", "nginx", 85, 6,
-             "Reverse proxy, load balancing, SSL termination, caching strategies.",
-             "devicon-nginx-plain"),
-            ("PostgreSQL", "postgresql", 85, 7,
-             "Database administration: replication, partitioning, vacuum strategies, query planning.",
-             "devicon-postgresql-plain"),
+            (
+                "Docker",
+                "docker",
+                90,
+                6,
+                "Containerization expert: multi-stage builds, Docker Compose, swarm, optimization.",
+                "devicon-docker-plain",
+            ),
+            (
+                "Kubernetes",
+                "kubernetes",
+                80,
+                4,
+                "Managing production clusters: deployments, Helm charts, service mesh, RBAC.",
+                "devicon-kubernetes-plain",
+            ),
+            (
+                "AWS",
+                "aws",
+                85,
+                6,
+                "AWS services: EC2, S3, RDS, Lambda, CloudFront, IAM, VPC design.",
+                "devicon-amazonwebservices-plain-wordmark",
+            ),
+            (
+                "CI/CD",
+                "cicd",
+                90,
+                6,
+                "Designing and maintaining CI/CD pipelines with GitHub Actions, GitLab CI, and Jenkins.",
+                "bi bi-infinity",
+            ),
+            (
+                "Terraform",
+                "terraform",
+                75,
+                4,
+                "Infrastructure-as-Code with Terraform for cloud resource provisioning.",
+                "devicon-terraform-plain",
+            ),
+            (
+                "Linux",
+                "linux",
+                95,
+                10,
+                "Expert Linux administration: systemd, networking, security hardening, performance tuning.",
+                "devicon-linux-plain",
+            ),
+            (
+                "Nginx",
+                "nginx",
+                85,
+                6,
+                "Reverse proxy, load balancing, SSL termination, caching strategies.",
+                "devicon-nginx-plain",
+            ),
+            (
+                "PostgreSQL",
+                "postgresql",
+                85,
+                7,
+                "Database administration: replication, partitioning, vacuum strategies, query planning.",
+                "devicon-postgresql-plain",
+            ),
         ],
     },
     {
-        "category": ("Tools & Platforms", "tools", "Development Tools & Productivity Platforms", "gear"),
+        "category": (
+            "Tools & Platforms",
+            "tools",
+            "Development Tools & Productivity Platforms",
+            "gear",
+        ),
         "skills": [
-            ("Git", "git", 90, 8,
-             "Advanced Git workflows: rebase strategies, bisect, hooks, submodules.",
-             "devicon-git-plain"),
-            ("GitHub Actions", "github-actions", 85, 4,
-             "Designing complex CI/CD workflows, matrix builds, custom actions.",
-             "devicon-githubactions-plain"),
-            ("VS Code", "vscode", 90, 6,
-             "Deeply customized VS Code environment with extensions, tasks, and debug configs.",
-             "devicon-vscode-plain"),
-            ("Neovim", "neovim", 80, 5,
-             "Terminal-based development with custom Neovim Lua configuration.",
-             "devicon-neovim-plain"),
-            ("Prometheus & Grafana", "prometheus-grafana", 75, 4,
-             "Monitoring stack: metric collection, alerting, dashboard creation.",
-             "devicon-prometheus-plain"),
+            (
+                "Git",
+                "git",
+                90,
+                8,
+                "Advanced Git workflows: rebase strategies, bisect, hooks, submodules.",
+                "devicon-git-plain",
+            ),
+            (
+                "GitHub Actions",
+                "github-actions",
+                85,
+                4,
+                "Designing complex CI/CD workflows, matrix builds, custom actions.",
+                "devicon-githubactions-plain",
+            ),
+            (
+                "VS Code",
+                "vscode",
+                90,
+                6,
+                "Deeply customized VS Code environment with extensions, tasks, and debug configs.",
+                "devicon-vscode-plain",
+            ),
+            (
+                "Neovim",
+                "neovim",
+                80,
+                5,
+                "Terminal-based development with custom Neovim Lua configuration.",
+                "devicon-neovim-plain",
+            ),
+            (
+                "Prometheus & Grafana",
+                "prometheus-grafana",
+                75,
+                4,
+                "Monitoring stack: metric collection, alerting, dashboard creation.",
+                "devicon-prometheus-plain",
+            ),
         ],
     },
 ]
@@ -319,7 +466,14 @@ Modern e-commerce platform decomposed into independently deployable services.
 - Kafka for event streaming
 - Istio service mesh for observability
 """,
-        "technologies": ["python", "golang", "docker", "kubernetes", "postgresql", "cicd"],
+        "technologies": [
+            "python",
+            "golang",
+            "docker",
+            "kubernetes",
+            "postgresql",
+            "cicd",
+        ],
         "github_url": "https://github.com/amw/ecommerce-platform",
         "live_url": "",
         "featured": False,
@@ -788,6 +942,7 @@ def seed_blog(user):
 # =========================================================================
 # MAIN
 # =========================================================================
+
 
 def main():
     print("=" * 48)

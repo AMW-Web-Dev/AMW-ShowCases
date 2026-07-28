@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 from taggit.managers import TaggableManager
 
@@ -10,7 +11,7 @@ class PublishedManager(models.Manager):
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True, max_length=200)
     content = models.TextField()
     excerpt = models.TextField(max_length=500, blank=True)
     image = models.ImageField(upload_to="blog/", blank=True, null=True)
@@ -38,7 +39,7 @@ class BlogPost(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return f"/blog/{self.slug}/"
+        return reverse("Blog:BlogDetail", kwargs={"slug": self.slug})
 
     @property
     def is_published_now(self):

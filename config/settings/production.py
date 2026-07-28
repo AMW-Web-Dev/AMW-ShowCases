@@ -21,8 +21,7 @@ DATABASES = {
 }
 
 # Security
-SECURITY_BROWSER_XSS_FILTER = True
-SECURITY_CONTENT_TYPE_NOSNIFF = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURITY_HSTS_SECONDS = 31536000
 SECURITY_HSTS_INCLUDE_SUBDOMAINS = True
 SECURITY_HSTS_PRELOAD = True
@@ -31,6 +30,11 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = "DENY"
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get("CSRF_TRUSTED_ORIGINS", "").split(",")
+    if origin.strip()
+]
 
 # Static files
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

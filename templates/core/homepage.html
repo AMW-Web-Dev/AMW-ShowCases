@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}AMW Portfolio — Home{% endblock %}
+{% block title %}AMW ShowCase — Home{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
 <section class="hero-section">
     <canvas id="hero-particles"></canvas>
-
     <div class="hero-shape hero-shape-1"></div>
     <div class="hero-shape hero-shape-2"></div>
 
@@ -19,19 +18,18 @@
                     Open for opportunities
                 </div>
                 <h1 class="hero-title">
-                    DevOps Engineer<br>
-                    &amp; <span class="gradient-text">Python Developer</span>
+                    Django Backend Engineer<br>
+                    <span class="gradient-text">Python Automation</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Building scalable infrastructure and elegant software.
-                    Specializing in automation, cloud-native solutions,
-                    and full-stack web development with Django &amp; HTMX.
+                    Python and Django Backend Engineer with many years of experience architecting production-grade systems and workflow automation tools handling real
+business operations
                 </p>
                 <div class="hero-actions">
-                    <a href="{% url 'projects:list' %}" class="btn btn-primary btn-lg btn-glow">
+                    <a href="{% url 'Projects:ProjectsList' %}" class="btn btn-primary btn-lg btn-glow">
                         <i class="bi bi-folder2-open me-2"></i>View Projects
                     </a>
-                    <a href="{% url 'core:contact' %}" class="btn btn-outline btn-lg">
+                    <a href="{% url 'Core:Contact' %}" class="btn btn-outline btn-lg">
                         <i class="bi bi-envelope me-2"></i>Contact Me
                     </a>
                 </div>
@@ -71,7 +69,7 @@
             {% endfor %}
         </div>
         <div class="text-center mt-4">
-            <a href="{% url 'skills:list' %}" class="btn btn-outline">View All Skills</a>
+            <a href="{% url 'Skills:SkillsList' %}" class="btn btn-outline">View All Skills</a>
         </div>
     </div>
 </section>
@@ -85,45 +83,66 @@
             <h2>Featured <span class="gradient-text">Projects</span></h2>
             <p>Selected work and open-source contributions</p>
         </div>
-        <div class="row g-4">
+        <div class="bento-grid">
             {% for project in featured_projects %}
-            <div class="col-md-6 col-lg-4">
-                <div class="card project-card h-100">
-                    {% if project.image %}
-                    <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
-                    {% endif %}
-                    <div class="card-body">
-                        <h3 class="h5 card-title">{{ project.title }}</h3>
-                        <p class="card-text text-secondary">{{ project.description|truncatewords:25 }}</p>
-                        <div class="mt-3">
-                            {% for tech in project.technologies.all|slice:":5" %}
-                            <span class="project-tech-tag">{{ tech.name }}</span>
-                            {% endfor %}
+            <div class="bento-item {% if project.featured %}bento-item--featured{% endif %} reveal">
+                <div class="card project-card-bento h-100">
+                    <div class="project-spotlight">
+                        {% if project.image %}
+                        <img src="{{ project.image.url }}" class="project-spotlight__img" alt="{{ project.title }}">
+                        {% endif %}
+                        <div class="project-spotlight__overlay"></div>
+                        <div class="project-spotlight__actions">
+                            {% if project.github_url %}
+                            <a href="{{ project.github_url }}" class="btn btn-sm btn-outline" target="_blank" rel="noopener">
+                                <i class="bi bi-github"></i>
+                                <span>Code</span>
+                            </a>
+                            {% endif %}
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" class="btn btn-sm btn-primary" target="_blank" rel="noopener">
+                                <i class="bi bi-box-arrow-up-right"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            {% endif %}
+                            <a href="{% url 'Projects:ProjectDetail' project.slug %}" class="btn btn-sm btn-outline">
+                                <i class="bi bi-arrow-right"></i>
+                                <span>Details</span>
+                            </a>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        {% if project.github_url %}
-                        <a href="{{ project.github_url }}" class="btn btn-outline btn-sm" target="_blank" rel="noopener">
-                            <i class="bi bi-github me-1"></i>Code
-                        </a>
-                        {% endif %}
-                        {% if project.live_url %}
-                        <a href="{{ project.live_url }}" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
-                            <i class="bi bi-box-arrow-up-right me-1"></i>Live
-                        </a>
-                        {% endif %}
-                        {% if not project.github_url and not project.live_url %}
-                        <a href="{% url 'projects:detail' project.slug %}" class="btn btn-outline btn-sm">
-                            Details
-                        </a>
-                        {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="h5 card-title">{{ project.title }}</h3>
+                        <div class="project-desc-toggle" data-bs-toggle="collapse" data-bs-target="#home-desc-{{ project.slug }}" aria-expanded="false" role="button">
+                            <i class="bi bi-chevron-right project-desc-icon"></i>
+                            Description
+                        </div>
+                        <div class="collapse" id="home-desc-{{ project.slug }}">
+                            <p class="card-text text-secondary mt-2">{{ project.description|truncatewords:25 }}</p>
+                        </div>
+                        <div class="project-tech-stack">
+                            {% for tech in project.technologies.all|slice:":8" %}
+                            <span class="project-tech-item">
+                                {% if tech.icon %}
+                                <i class="{{ tech.icon }}"></i>
+                                {% elif tech.slug == "htmx" %}
+                                <svg class="project-tech-icon-svg" viewBox="0 0 256 168" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <polygon points="181.394935 42.749283 256 74.2039835 256 96.0617321 181.394935 127.078518 175.477838 105.581524 230.646979 84.8771384 175.477838 64.0931689"/>
+                                    <polygon points="74.6050654 42.7484751 6.6060424e-14 74.2039835 1.8363413e-13 96.0617321 74.6050654 127.078518 80.5221623 105.581524 25.3530206 84.8771384 80.5221623 64.0931689"/>
+                                    <polygon points="144.339858 -1.59458264e-15 170.003907 -1.59458264e-15 112.990192 167.110525 85.996093 167.110525"/>
+                                </svg>
+                                {% endif %}
+                                {{ tech.name }}
+                            </span>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
         <div class="text-center mt-4">
-            <a href="{% url 'projects:list' %}" class="btn btn-outline">View All Projects</a>
+            <a href="{% url 'Projects:ProjectsList' %}" class="btn btn-outline">View All Projects</a>
         </div>
     </div>
 </section>
@@ -135,7 +154,7 @@
     <div class="container">
         <div class="section-title">
             <h2>Latest <span class="gradient-text">Posts</span></h2>
-            <p>Thoughts on development, DevOps, and technology</p>
+            <p>Thoughts on python development, DevOps, and technology</p>
         </div>
         <div class="row g-4">
             {% for post in recent_posts %}
@@ -155,14 +174,14 @@
                     </div>
                     <div class="card-footer">
                         <span class="blog-meta">{{ post.published_at|date:"M j, Y" }}</span>
-                        <a href="{% url 'blog:detail' post.slug %}" class="btn btn-outline btn-sm">Read</a>
+                        <a href="{% url 'Blog:BlogDetail' post.slug %}" class="btn btn-outline btn-sm">Read</a>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
         <div class="text-center mt-4">
-            <a href="{% url 'blog:list' %}" class="btn btn-outline">View All Posts</a>
+            <a href="{% url 'Blog:BlogList' %}" class="btn btn-outline">View All Posts</a>
         </div>
     </div>
 </section>

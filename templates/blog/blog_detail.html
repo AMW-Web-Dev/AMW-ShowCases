@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static markdown %}
 
-{% block title %}{{ post.title }} — AMW Portfolio{% endblock %}
+{% block title %} | {{ post.title }}{% endblock %}
 
 {% block meta_description %}{{ post.excerpt|default:post.content|truncatewords:30 }}{% endblock %}
 
@@ -11,7 +11,7 @@
         <header class="mb-4">
             <div class="mb-3">
                 {% for tag in post.tags.all %}
-                <a href="{% url 'blog:tag' tag.slug %}" class="blog-tag text-decoration-none">{{ tag.name }}</a>
+                <a href="{% url 'Blog:BlogTag' tag.slug %}" class="blog-tag text-decoration-none">{{ tag.name }}</a>
                 {% endfor %}
             </div>
             <h1>{{ post.title }}</h1>
@@ -34,13 +34,13 @@
     </article>
 
     <div class="d-flex justify-content-between mt-5">
-        <a href="{% url 'blog:list' %}" class="btn btn-outline">
+        <a href="{% url 'Blog:BlogList' %}" class="btn btn-outline">
             <i class="bi bi-arrow-left me-1"></i>Back to Blog
         </a>
         {% if user.is_staff %}
         <div class="d-flex gap-2">
-            <a href="{% url 'blog:update' post.slug %}" class="btn btn-outline">Edit Post</a>
-            <a href="{% url 'blog:delete' post.slug %}" class="btn btn-outline" style="border-color: rgba(244, 114, 182, 0.3); color: var(--accent-rose);">Delete</a>
+            <a href="{% url 'Blog:BlogUpdate' post.slug %}" class="btn btn-outline">Edit Post</a>
+            <a href="{% url 'Blog:BlogDelete' post.slug %}" class="btn btn-outline" style="border-color: rgba(244, 114, 182, 0.3); color: var(--accent-rose);">Delete</a>
         </div>
         {% endif %}
     </div>

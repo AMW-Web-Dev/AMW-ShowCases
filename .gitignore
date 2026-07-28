@@ -50,3 +50,12 @@ staticfiles/
 # OS
 .DS_Store
 Thumbs.db
+
+# Runtime artifacts
+nohup.out
+
+# Node
+node_modules/
+
+# Personal
+MySkillsList.txt

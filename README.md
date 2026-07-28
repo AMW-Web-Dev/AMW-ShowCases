@@ -1,52 +1,183 @@
-# AMW Portfolio Showcase
+# AMW ShowCases
 
-Professional portfolio website showcasing skills, projects, and technical expertise.
+Professional portfolio website showcasing Django backend engineering skills, projects, and technical expertise. Built with Django 6, HTMX, Bootstrap 5, and deployed on Render.
+
+**Live Demo**: [amw.work.gd](https://amw.work.gd)
+
+---
+
+## Features
+
+- **Homepage** — Hero section, featured skills, featured projects, recent blog posts
+- **About** — Profile with avatar, bio, social links (GitHub, LinkedIn), downloadable CV
+- **Projects** — Bento grid with spotlight images, collapsible descriptions, tech tags, filtering by skill category
+- **Blog** — Markdown-powered posts with tags, filtering, responsive card layout
+- **Skills** — Categorized skill cards with proficiency and experience data
+- **Contact** — Contact form with validation
+- **Analytics** — Admin dashboard for page views and visitor tracking
+- **Admin** — Full Django admin with custom branding for content management
 
 ## Tech Stack
 
-- **Backend**: Django 6.0.7
-- **Frontend**: HTMX 1.28.0 + Bootstrap 5.3.0
-- **Database**: PostgreSQL (Neon)
-- **Storage**: CloudFlare R2 (media, static files)
-- **Hosting**: Render
+| Layer | Technology |
+|---|---|
+| Backend | Django 6.0.7 |
+| Frontend | HTMX 1.28 + Bootstrap 5.3 |
+| Database | PostgreSQL (Render Neon) |
+| Media Storage | CloudFlare R2 (S3-compatible, zero egress) |
+| Static Files | Whitenoise (compressed manifest) |
+| Markdown | django-markdownx |
+| Tags | django-taggit |
+| Error Tracking | Sentry |
+| Hosting | Render (auto-deploy from `main`) |
+| WSGI Server | Gunicorn |
 
-## Setup
+## Project Structure
+
+```
+AMWShowCases/
+├── apps/
+│   ├── core/           # Homepage, contact, health check
+│   ├── humans/         # Custom user model (placeholder for auth)
+│   ├── skills/         # Skill categories and skill cards
+│   ├── projects/       # Project showcase with categories
+│   ├── blog/           # Blog with Markdown, tags, slug management
+│   └── analytics/      # Page view tracking + admin dashboard
+├── config/
+│   ├── settings/
+│   │   ├── base.py         # Shared settings
+│   │   ├── development.py  # Local dev (PostgreSQL, DEBUG=True)
+│   │   └── production.py   # Render deployment (SSL, R2, Sentry)
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── admin.py        # Custom admin branding
+├── templates/          # Global + app templates
+│   ├── _snippets/      # Reusable partials (navbar, footer, head, scripts)
+│   ├── core/           # Homepage, about, contact
+│   ├── projects/       # Project list + detail
+│   ├── blog/           # Blog list, detail, tag filter, forms
+│   ├── skills/         # Skills list
+│   ├── analytics/      # Dashboard
+│   ├── 404.html        # Custom 404 page
+│   └── 500.html        # Custom 500 page
+├── static/
+│   ├── css/            # Custom styles + variables
+│   ├── js/             # Custom JavaScript
+│   ├── images/         # Avatar, assets
+│   └── Files/          # Downloadable CV (PDF)
+├── utils/              # Seed scripts (dev only)
+├── requirements/
+│   ├── base.txt        # Production dependencies
+│   ├── dev.txt         # Dev tools (pytest, debug toolbar)
+│   └── prod.txt        # Production extras (Sentry)
+├── render.yaml         # Render deployment blueprint
+├── manage.py
+└── pyproject.toml      # Ruff + pytest config
+```
+
+## Local Development
+
+### Prerequisites
+
+- Python 3.12+
+- PostgreSQL (local or Neon)
+- pip
+
+### Setup
 
 ```bash
+# Clone the repo
+git clone https://github.com/AMW-Web-Dev/AMW-ShowCases.git
+cd AMW-ShowCases
+
 # Create virtual environment
 python -m venv venv
 source venv/bin/activate
 
-# Install dependencies
+# Install dev dependencies
 pip install -r requirements/dev.txt
 
-# Copy environment file
+# Copy environment file and configure
 cp .env.example .env
+# Edit .env with your local database credentials
 
 # Run migrations
 python manage.py migrate
+
+# Create superuser
+python manage.py createsuperuser
+
+# Seed sample data (optional)
+python utils/seed_data.py
 
 # Start development server
 python manage.py runserver 8000
 ```
 
-## Project Structure
+Visit [http://localhost:8000](http://localhost:8000)
 
+### Running Tests
+
+```bash
+pytest --ds=config.settings.development
 ```
-AMWPortfolio/
-├── apps/           # Django applications
-│   ├── core/       # Homepage, shared utilities
-│   ├── humans/     # Authentication
-│   ├── skills/     # Skills management
-│   ├── projects/   # Project showcase
-│   ├── blog/       # Blog with Markdown/tags
-│   └── analytics/  # Analytics dashboard
-├── config/         # Project configuration
-├── static/         # Static assets
-├── templates/      # Global templates
-└── requirements/   # Dependency files
+
+### Linting
+
+```bash
+ruff check .
+ruff format .
 ```
 
 ## Deployment
 
-See `render.yaml` for Render deployment configuration.
+### Render (Production)
+
+The project includes a `render.yaml` blueprint for one-click deployment:
+
+1. Push to GitHub
+2. Connect the repo to Render
+3. Render auto-provisions: PostgreSQL database, web service
+4. Set environment variables in Render dashboard:
+
+| Variable | Description |
+|---|---|
+| `SECRET_KEY` | Auto-generated by Render |
+| `DATABASE_URL` | Auto-linked from provisioned DB |
+| `ALLOWED_HOSTS` | `amw.work.gd` |
+| `CSRF_TRUSTED_ORIGINS` | `https://amw.work.gd` |
+| `R2_ACCESS_KEY_ID` | CloudFlare R2 API token |
+| `R2_SECRET_ACCESS_KEY` | CloudFlare R2 API token |
+| `R2_BUCKET_NAME` | Your R2 bucket name |
+| `R2_ENDPOINT_URL` | `https://<account-id>.r2.cloudflarestorage.com` |
+| `SENTRY_DSN` | Sentry project DSN (optional) |
+
+### Production Settings
+
+- SSL/HTTPS enforced (`SECURE_SSL_REDIRECT`)
+- HSTS enabled (1 year)
+- Secure cookies (session + CSRF)
+- Content type sniffing blocked
+- X-Frame-Options: DENY
+- CloudFlare R2 for media (zero egress fees)
+- Whitenoise for compressed static files
+- Sentry error tracking
+- Health check at `/health/`
+
+## Key URLs
+
+| URL | Description |
+|---|---|
+| `/` | Homepage |
+| `/about/` | About page with CV download |
+| `/projects/` | Project showcase (filterable) |
+| `/blog/` | Blog listing (filterable by tag) |
+| `/skills/` | Skills categories |
+| `/contact/` | Contact form |
+| `/admin/` | Django admin |
+| `/dashboard/` | Analytics dashboard |
+| `/health/` | Health check (JSON) |
+
+## License
+
+This project is maintained by [Ahmad M. Waddah](https://github.com/AhmadMWaddah).

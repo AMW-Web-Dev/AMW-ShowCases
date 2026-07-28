@@ -1,5 +1,12 @@
 from django.urls import path
+from django.views.generic import RedirectView
 
-app_name = "humans"
+app_name = "Humans"
 
-urlpatterns = []
+urlpatterns = [
+    path(
+        "",
+        RedirectView.as_view(pattern_name="Core:Homepage", permanent=False),
+        name="Index",
+    ),
+]

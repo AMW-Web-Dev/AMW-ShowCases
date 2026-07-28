@@ -1,44 +1,67 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Skills — AMW Portfolio{% endblock %}
+{% block title %} | Skills{% endblock %}
 
 {% block content %}
 <div class="container py-5">
-    <div class="section-title">
-        <h1>Skills &amp; <span class="gradient-text">Expertise</span></h1>
+    <div class="section-title reveal">
+        <div class="section-title-row">
+            <h1 class="mb-0">Skills &amp; <span class="gradient-text">Expertise</span></h1>
+            {% if user.is_staff %}
+            <a href="{% url 'admin:skills_skill_add' %}" class="admin-add-btn" title="New Skill">
+                <i class="bi bi-plus-lg"></i>
+                <span>New Skill</span>
+            </a>
+            {% endif %}
+        </div>
         <p>Technologies and tools I use to build and ship</p>
     </div>
 
     {% for category in categories %}
-    <div class="skills-category reveal">
-        <div class="skills-category-title">
-            <span class="icon">
+    <div class="skill-category reveal">
+        <div class="skill-category-header">
+            <span class="skill-category-icon">
                 {% if category.icon == "code-slash" %}<i class="bi bi-code-slash"></i>
                 {% elif category.icon == "layers" %}<i class="bi bi-layers"></i>
                 {% elif category.icon == "cloud" %}<i class="bi bi-cloud"></i>
                 {% elif category.icon == "gear" %}<i class="bi bi-gear"></i>
+                {% elif category.icon == "shield" %}<i class="bi bi-shield-check"></i>
+                {% elif category.icon == "stars" %}<i class="bi bi-stars"></i>
+                {% elif category.icon == "cpu" %}<i class="bi bi-cpu"></i>
+                {% elif category.icon == "graph-up" %}<i class="bi bi-graph-up"></i>
                 {% else %}<i class="bi bi-star"></i>
                 {% endif %}
             </span>
-            {{ category.name }}
-        </div>
-        {% if category.description %}
-        <p class="text-secondary mb-3">{{ category.description }}</p>
-        {% endif %}
-        <div>
-            {% for skill in category.skills.all %}
-            <span class="skill-tag {% if skill.featured %}featured{% endif %}">
-                {% if skill.icon %}<i class="{{ skill.icon }}"></i>
-                {% elif skill.slug == "htmx" %}
-                <svg class="skill-icon-htmx-svg" viewBox="0 0 256 168" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="181.394935 42.749283 256 74.2039835 256 96.0617321 181.394935 127.078518 175.477838 105.581524 230.646979 84.8771384 175.477838 64.0931689"/>
-                    <polygon points="74.6050654 42.7484751 6.6060424e-14 74.2039835 1.8363413e-13 96.0617321 74.6050654 127.078518 80.5221623 105.581524 25.3530206 84.8771384 80.5221623 64.0931689"/>
-                    <polygon points="144.339858 -1.59458264e-15 170.003907 -1.59458264e-15 112.990192 167.110525 85.996093 167.110525"/>
-                </svg>
+            <div>
+                <h2 class="skill-category-name">{{ category.name }}</h2>
+                {% if category.description %}
+                <p class="skill-category-desc">{{ category.description }}</p>
                 {% endif %}
-                {{ skill.name }}
-            </span>
+            </div>
+        </div>
+
+        <div class="skill-grid">
+            {% for skill in category.skills.all %}
+            <div class="skill-card {% if skill.featured %}skill-card--featured{% endif %}">
+                {% if skill.featured %}<span class="skill-featured-dot" title="Featured skill"></span>{% endif %}
+                <div class="skill-card-icon">
+                    {% if skill.icon %}
+                        {% if "bi " in skill.icon %}
+                        <i class="{{ skill.icon }}"></i>
+                        {% else %}
+                        <i class="{{ skill.icon }}"></i>
+                        {% endif %}
+                    {% elif skill.slug == "htmx" %}
+                    <svg class="skill-card-icon-svg" viewBox="0 0 256 168" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="181.394935 42.749283 256 74.2039835 256 96.0617321 181.394935 127.078518 175.477838 105.581524 230.646979 84.8771384 175.477838 64.0931689"/>
+                        <polygon points="74.6050654 42.7484751 6.6060424e-14 74.2039835 1.8363413e-13 96.0617321 74.6050654 127.078518 80.5221623 105.581524 25.3530206 84.8771384 80.5221623 64.0931689"/>
+                        <polygon points="144.339858 -1.59458264e-15 170.003907 -1.59458264e-15 112.990192 167.110525 85.996093 167.110525"/>
+                    </svg>
+                    {% endif %}
+                </div>
+                <span class="skill-card-name">{{ skill.name }}</span>
+            </div>
             {% endfor %}
         </div>
     </div>

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}About — AMW Portfolio{% endblock %}
+{% block title %} | About{% endblock %}
 
 {% block content %}
 
@@ -21,15 +21,19 @@
                     <div class="col-md-7">
                         <p class="about-badge text-uppercase small fw-bold mb-2">Who I Am</p>
                         <h1 class="display-4 fw-bold mb-3">About <span class="gradient-text">Me</span></h1>
-                        <p class="lead text-secondary mb-4">DevOps Engineer &middot; Python Developer</p>
-                        <div class="d-flex gap-3">
-                            <a href="https://github.com/amw" class="social-link-tag" target="_blank" rel="noopener">
+                        <p class="lead text-secondary mb-4">Django Backend Engineer | Python Automation</p>
+                        <div class="d-flex gap-3 justify-content-sm-start justify-content-center flex-wrap">
+                            <a href="https://github.com/AhmadMWaddah" class="social-link-tag" target="_blank" rel="noopener">
                                 <i class="bi bi-github"></i>
-                                <span>github.com/amw</span>
+                                <span>My GitHub</span>
                             </a>
-                            <a href="https://linkedin.com/in/amw" class="social-link-tag" target="_blank" rel="noopener">
+                            <a href="https://www.linkedin.com/in/ahmadmwaddah" class="social-link-tag" target="_blank" rel="noopener">
                                 <i class="bi bi-linkedin"></i>
-                                <span>linkedin.com/in/amw</span>
+                                <span>My LinkedIn</span>
+                            </a>
+                            <a href="{% static 'Files/CV_Ahmad_Waddah.pdf' %}" class="social-link-tag" target="_blank" rel="noopener" download>
+                                <i class="bi bi-file-earmark-pdf"></i>
+                                <span>Download CV</span>
                             </a>
                         </div>
                     </div>
@@ -52,11 +56,12 @@
                     </span>
                     <h2 class="h5 mb-0">Professional Summary</h2>
                 </div>
-                <p class="text-secondary mb-0">
-                    DevOps Engineer and Python Developer with extensive experience in
-                    building and maintaining scalable infrastructure. Specializing in
-                    automation, containerization, and cloud-native solutions.
-                    Passionate about clean code, efficient systems, and open source.
+                <p class="text-secondary mb-0" style="text-align: justify;">
+                    Senior Python and Django Backend Engineer with many years of experience architecting production-grade ERP systems, REST
+APIs, and workflow automation tools. Built and deployed an 11-phase ERP system (259 tests, Celery, Docker) handling real
+business operations. Expert in PostgreSQL optimization, async task management, and Linux-based deployments. Deep domain
+expertise in eCommerce operations—building systems that solve real business problems. Seeking Senior Backend or Platform
+Engineering roles where I can deliver scalable, maintainable software.
                 </p>
             </div>
         </div>
@@ -71,19 +76,19 @@
                 <ul class="list-unstyled mb-0">
                     <li class="d-flex align-items-center gap-2 mb-2">
                         <span class="focus-dot"></span>
-                        Building scalable web apps with Django &amp; HTMX
+                        Building scalable web apps with Django, Python & HTMX
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
                         <span class="focus-dot"></span>
-                        Automating dev workflows &amp; infrastructure
+                        Automating dev workflows with Python & shell scripting
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
                         <span class="focus-dot"></span>
-                        Contributing to open source projects
+                        Contributing to Django & Python open source projects
                     </li>
                     <li class="d-flex align-items-center gap-2">
                         <span class="focus-dot"></span>
-                        Exploring cloud-native architectures
+                        Building automation pipelines for cloud-native infrastructure
                     </li>
                 </ul>
             </div>
@@ -102,19 +107,19 @@
             <div class="col-6 col-md-3">
                 <div class="card h-100 text-center p-3">
                     <div class="contact-icon mx-auto mb-3">
-                        <i class="bi bi-cloud"></i>
+                        <i class="bi bi-code-slash"></i>
                     </div>
-                    <h6 class="card-title">DevOps &amp; Cloud</h6>
-                    <p class="small text-secondary mb-0">Docker, Kubernetes, CI/CD</p>
+                    <h6 class="card-title">Backend Development</h6>
+                    <p class="small text-secondary mb-0">Django, DRF, PostgreSQL, HTMX</p>
                 </div>
             </div>
             <div class="col-6 col-md-3">
                 <div class="card h-100 text-center p-3">
                     <div class="contact-icon mx-auto mb-3">
-                        <i class="bi bi-code-slash"></i>
+                        <i class="bi bi-cloud"></i>
                     </div>
-                    <h6 class="card-title">Backend</h6>
-                    <p class="small text-secondary mb-0">Python, Django, PostgreSQL</p>
+                    <h6 class="card-title">DevOps &amp; Automation</h6>
+                    <p class="small text-secondary mb-0">Docker, CI/CD, Terraform, Scripting</p>
                 </div>
             </div>
             <div class="col-6 col-md-3">
@@ -122,8 +127,8 @@
                     <div class="contact-icon mx-auto mb-3">
                         <i class="bi bi-terminal"></i>
                     </div>
-                    <h6 class="card-title">Linux &amp; Systems</h6>
-                    <p class="small text-secondary mb-0">Admin, Scripting, Automation</p>
+                    <h6 class="card-title">Linux &amp; Security</h6>
+                    <p class="small text-secondary mb-0">Administration, Hardening, Virtualization</p>
                 </div>
             </div>
             <div class="col-6 col-md-3">
@@ -131,8 +136,8 @@
                     <div class="contact-icon mx-auto mb-3">
                         <i class="bi bi-bar-chart"></i>
                     </div>
-                    <h6 class="card-title">Data &amp; Analytics</h6>
-                    <p class="small text-secondary mb-0">ETL, Processing, Dashboards</p>
+                    <h6 class="card-title">Data &amp; Quality</h6>
+                    <p class="small text-secondary mb-0">ETL Pipelines, Analysis, Test Automation</p>
                 </div>
             </div>
         </div>
