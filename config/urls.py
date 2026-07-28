@@ -5,12 +5,8 @@ from django.urls import include, path
 
 from apps.core.health import health_check
 
-def trigger_error(request):
-    division_by_zero = 1 / 0
-
 urlpatterns = [
     path("health/", health_check, name="HealthCheck"),
-    path("sentry-debug/", trigger_error),
     path("admin/", admin.site.urls),
     path("markdownx/", include("markdownx.urls")),
     path("", include("apps.core.urls", namespace="Core")),
