@@ -14,8 +14,6 @@ Personal portfolio website showcasing Django backend engineering skills, project
 - **Blog** — Markdown-powered posts with tags, filtering, responsive card layout
 - **Skills** — Categorized skill cards with proficiency and experience data
 - **Contact** — Contact form with validation
-- **Analytics** — Admin dashboard for page views and visitor tracking
-- **Admin** — Full Django admin with custom branding for content management
 
 ## Tech Stack
 
