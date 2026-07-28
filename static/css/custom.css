@@ -122,6 +122,16 @@ a:hover {
 }
 
 /* ─── CPanel Dropdown ─── */
+.cpanel-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.cpanel-center .navbar-nav {
+  flex-direction: row;
+}
+
 .cpanel-link {
   position: relative;
   padding-left: 1.75rem !important;
