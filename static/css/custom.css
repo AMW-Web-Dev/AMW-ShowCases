@@ -191,6 +191,26 @@ a:hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
 }
 
+/* ─── Dashboard Tables ─── */
+.card .table {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--text-primary);
+  --bs-table-hover-bg: var(--bg-hover);
+  --bs-table-hover-color: var(--text-primary);
+  --bs-table-striped-bg: transparent;
+  margin-bottom: 0;
+}
+
+.card .table th {
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 600;
+}
+
+.card .table td {
+  border-color: var(--border-color);
+  vertical-align: middle;
+}
+
 /* ─── Theme Toggle ─── */
 .theme-toggle {
   background: var(--bg-card);
