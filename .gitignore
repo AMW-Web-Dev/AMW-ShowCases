@@ -59,3 +59,11 @@ node_modules/
 
 # Personal
 MySkillsList.txt
+
+# Planning / Architecture (local only)
+.sisyphus/
+.sisyphus
+AMWShowCase_Architecture_Plan.md
+Architecture/
+Constitution/
+utils/
