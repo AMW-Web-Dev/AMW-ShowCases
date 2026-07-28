@@ -2396,3 +2396,10 @@ textarea.form-control {
   background: var(--bg-surface);
   color: var(--text-primary);
 }
+
+.footer-dns-logo {
+  height: 14px;
+  width: auto;
+  vertical-align: middle;
+  margin-left: 4px;
+}
