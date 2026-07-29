@@ -2,7 +2,7 @@ import time
 from collections import defaultdict
 
 from django.conf import settings
-from django.http import HttpResponseTooManyRequests
+from django.http import HttpResponse
 
 from .models import PageView, Visitor
 
@@ -26,7 +26,7 @@ class RateLimitMiddleware:
 
         ip = self.get_client_ip(request)
         if ip and self.is_rate_limited(ip):
-            return HttpResponseTooManyRequests("429 — Too Many Requests. Slow down.")
+            return HttpResponse("429 — Too Many Requests. Slow down.", status=429)
 
         self._track(ip)
         return self.get_response(request)
