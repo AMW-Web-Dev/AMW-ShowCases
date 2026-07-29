@@ -70,3 +70,4 @@ utils/
 
 # Database dumps (local)
 *_dump.sql
+DataBaseNeonExport/

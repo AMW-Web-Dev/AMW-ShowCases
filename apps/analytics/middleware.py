@@ -30,11 +30,15 @@ class AnalyticsMiddleware:
         return self.get_response(request)
 
     def should_track(self, request):
-        if request.path.startswith("/admin/") or request.path.startswith("/static/"):
+        if request.path.startswith(("/nexus/", "/static/")):
             return False
         if request.headers.get("HX-Request"):
             return False
-        if hasattr(request, "user") and request.user.is_authenticated and request.user.is_staff:
+        if (
+            hasattr(request, "user")
+            and request.user.is_authenticated
+            and request.user.is_staff
+        ):
             return False
         return True
 
