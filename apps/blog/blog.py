@@ -44,7 +44,7 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
     model = BlogPost
     template_name = "blog/blog_form.html"
     form_class = BlogPostCreateForm
-    login_url = "/admin/login/"
+    login_url = "/nexus/login/"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -55,14 +55,14 @@ class BlogUpdateView(LoginRequiredMixin, UpdateView):
     model = BlogPost
     template_name = "blog/blog_form.html"
     form_class = BlogPostUpdateForm
-    login_url = "/admin/login/"
+    login_url = "/nexus/login/"
 
 
 class BlogDeleteView(LoginRequiredMixin, DeleteView):
     model = BlogPost
     template_name = "blog/blog_confirm_delete.html"
     success_url = reverse_lazy("Blog:BlogList")
-    login_url = "/admin/login/"
+    login_url = "/nexus/login/"
 
 
 def blog_tag_view(request, tag_slug):

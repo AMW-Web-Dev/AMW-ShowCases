@@ -110,7 +110,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "humans.User"
 
 # Login URLs
-LOGIN_URL = "/admin/login/"
+LOGIN_URL = "/nexus/login/"
 LOGIN_REDIRECT_URL = "Core:Homepage"
 LOGOUT_REDIRECT_URL = "Core:Homepage"
 
