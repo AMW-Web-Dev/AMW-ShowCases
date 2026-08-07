@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.admin import ShowFacets
 
 from .models import Skill, SkillCategory
 
@@ -23,6 +24,7 @@ class SkillCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
+    show_facets = ShowFacets.ALWAYS
     list_display = [
         "name",
         "category",
