@@ -21,6 +21,7 @@ class BlogPost(models.Model):
     tags = TaggableManager(blank=True)
     is_published = models.BooleanField(default=False)
     published_at = models.DateTimeField(blank=True, null=True)
+    read_count = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
