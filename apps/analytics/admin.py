@@ -1,10 +1,12 @@
 from django.contrib import admin
+from django.contrib.admin import ShowFacets
 
 from .models import PageView, Visitor
 
 
 @admin.register(PageView)
 class PageViewAdmin(admin.ModelAdmin):
+    show_facets = ShowFacets.ALWAYS
     list_display = ["path", "ip_address", "referrer", "created_at"]
     list_filter = ["created_at"]
     search_fields = ["path", "ip_address"]
@@ -16,6 +18,7 @@ class PageViewAdmin(admin.ModelAdmin):
 
 @admin.register(Visitor)
 class VisitorAdmin(admin.ModelAdmin):
+    show_facets = ShowFacets.ALWAYS
     list_display = ["ip_address", "first_visit", "last_visit", "visit_count"]
     list_filter = ["first_visit"]
     readonly_fields = ["first_visit", "last_visit"]

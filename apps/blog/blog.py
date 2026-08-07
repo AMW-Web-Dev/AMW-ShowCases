@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import F
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -38,6 +39,13 @@ class BlogDetailView(DetailView):
 
     def get_queryset(self):
         return BlogPost.published
+
+    def get(self, request, *args, **kwargs):
+        response = super().get(request, *args, **kwargs)
+        post = self.object
+        if not (request.user.is_authenticated and request.user.is_staff):
+            BlogPost.objects.filter(pk=post.pk).update(read_count=F("read_count") + 1)
+        return response
 
 
 class BlogCreateView(LoginRequiredMixin, CreateView):

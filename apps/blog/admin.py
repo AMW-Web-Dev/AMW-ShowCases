@@ -8,6 +8,7 @@ class BlogPostAdmin(admin.ModelAdmin):
     list_display = [
         "title",
         "author",
+        "read_count",
         "is_published",
         "published_at",
         "created_at",
