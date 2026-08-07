@@ -93,7 +93,10 @@ class AnalyticsMiddleware:
         return self.get_response(request)
 
     def should_track(self, request):
-        if request.path.startswith(("/nexus/", "/static/")):
+        path = request.path.rstrip("/")
+        if path in ("/nexus", "/hub", "/static") or path.startswith(
+            ("/nexus/", "/hub/", "/static/")
+        ):
             return False
         if request.headers.get("HX-Request"):
             return False
