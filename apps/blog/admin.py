@@ -1,10 +1,12 @@
 from django.contrib import admin
+from django.contrib.admin import ShowFacets
 
 from .models import BlogPost
 
 
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
+    show_facets = ShowFacets.ALWAYS
     list_display = [
         "title",
         "author",

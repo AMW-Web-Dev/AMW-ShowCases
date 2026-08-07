@@ -1,10 +1,12 @@
 from django.contrib import admin
+from django.contrib.admin import ShowFacets
 
 from .models import Project
 
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
+    show_facets = ShowFacets.ALWAYS
     list_display = ["title", "featured", "order", "created_at", "updated_at"]
     list_filter = ["featured", "created_at"]
     search_fields = ["title", "description"]
